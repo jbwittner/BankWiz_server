@@ -1,10 +1,10 @@
-package fr.bankwiz.server.infrastructure.spijpa;
+package fr.bankwiz.server.application;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpiJpaApplicationTests {
+class ApplicationTests {
 
     @Test
     void contextLoads() {}
