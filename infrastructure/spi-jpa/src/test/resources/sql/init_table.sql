@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `SIMPLE_ENTITY`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `SIMPLE_ENTITY` (
   `SIMPLE_DATA_ID` binary(16) NOT NULL,
-  `SIMPLE_DATA` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `SIMPLE_DATA` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`SIMPLE_DATA_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,4 +38,4 @@ CREATE TABLE `SIMPLE_ENTITY` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-28 21:59:19
+-- Dump completed on 2024-10-28 22:41:26
