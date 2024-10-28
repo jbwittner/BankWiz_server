@@ -9,6 +9,7 @@
     <description>Server for Bankwiz application</description>
     <modules>
         <module>domain</module>
+        <module>infrastructure/spi-jpa</module>
     </modules>
     <distributionManagement>
         <repository>
