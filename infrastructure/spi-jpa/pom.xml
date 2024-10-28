@@ -10,7 +10,7 @@
     <groupId>fr.bankwiz.server.infrastructure</groupId>
     <artifactId>spi-jpa</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>ApiAtlasHub - Infrastructure - Spi JPA</name>
+    <name>Bankwiz - Infrastructure - Spi JPA</name>
     <properties>
         <sonar.projectKey>jbwittner_bankwiz_server_infrastructure_spi_jpa</sonar.projectKey>
     </properties>
