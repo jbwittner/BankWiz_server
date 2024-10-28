@@ -8,6 +8,7 @@
     <name>Bankwiz - Parent</name>
     <description>Server for Bankwiz application</description>
     <modules>
+        <module>domain</module>
     </modules>
     <distributionManagement>
         <repository>
