@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>fr.bankwiz.server</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Bankwiz - Parent</name>
+    <description>Server for Bankwiz application</description>
+    <modules>
+    </modules>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>Github Maven repository</name>
+            <url>https://maven.pkg.github.com/jbwittner/bankwiz_server</url>
+        </repository>
+    </distributionManagement>
+    <properties>
+        <application.java.version>21</application.java.version>
+        <maven.compiler.source>${application.java.version}</maven.compiler.source>
+        <maven.compiler.target>${application.java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>jbwittner</sonar.organization>
+        <springboot.version>3.3.4</springboot.version>
+    </properties>
+    <dependencies>
+        <!-- Dev -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.34</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Dev -->
+        <!-- Test -->
+        <dependency>
+            <groupId>org.instancio</groupId>
+            <artifactId>instancio-junit</artifactId>
+            <version>5.0.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Test -->
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>2.43.0</version>
+                <configuration>
+                    <formats>
+                        <!-- you can define as many formats as you want, each is independent -->
+                        <format>
+                            <!-- define the files to apply to -->
+                            <includes>
+                                <include>.gitignore</include>
+                            </includes>
+                            <!-- define the steps to apply to those files -->
+                            <trimTrailingWhitespace/>
+                            <endWithNewline/>
+                            <indent>
+                                <tabs>false</tabs>
+                                <spaces>true</spaces>
+                                <spacesPerTab>4</spacesPerTab>
+                            </indent>
+                        </format>
+                    </formats>
+                    <markdown>
+                        <includes>
+                            <!-- You have to set the target manually -->
+                            <include>**/*.md</include>
+                        </includes>
+                        <flexmark/>
+                        <!-- has its own section below -->
+                    </markdown>
+                    <yaml>
+                        <includes>
+                            <!-- You have to set the target manually -->
+                            <include>**/*.yaml</include>
+                        </includes>
+                        <jackson>
+                            <features>
+                                <!-- optional: Customize the set of features (based on com.fasterxml.jackson.databind.SerializationFeature) -->
+                                <INDENT_OUTPUT>true</INDENT_OUTPUT>
+                                <!-- true by default -->
+                                <ORDER_MAP_ENTRIES_BY_KEYS>false</ORDER_MAP_ENTRIES_BY_KEYS>
+                                <!-- false by default -->
+                            </features>
+                            <yamlFeatures>
+                                <MINIMIZE_QUOTES>true</MINIMIZE_QUOTES>
+                                <!-- false by default -->
+                            </yamlFeatures>
+                        </jackson>
+                        <!-- has its own section below -->
+                        <!-- has its own section below -->
+                    </yaml>
+                    <!-- optional: limit format enforcement to just the files changed by this feature branch -->
+                    <java>
+                        <!-- These are the defaults, you can override if you want -->
+                        <includes>
+                            <include>src/main/java/**/*.java</include>
+                            <include>src/test/java/**/*.java</include>
+                        </includes>
+                        <!-- Cleanthat will refactor your code, but it may break your style: apply it before your formatter -->
+                        <cleanthat/>
+                        <!-- has its own section below -->
+                        <googleJavaFormat/>
+                        <palantirJavaFormat/>
+                        <!-- has its own section below -->
+                        <importOrder/>
+                        <!-- standard import order -->
+                        <importOrder>
+                            <!-- or a custom ordering -->
+                            <wildcardsLast>false</wildcardsLast>
+                            <!-- Optional, default false. Sort wildcard import after specific imports -->
+                            <order>java|javax,org,com,com.diffplug,,\#com.diffplug,\#</order>
+                            <!-- or use <file>${project.basedir}/eclipse.importorder</file> -->
+                            <!-- you can use an empty string for all the imports you didn't specify explicitly, '|' to join group without blank line, and '\#` prefix for static imports. -->
+                        </importOrder>
+                        <removeUnusedImports/>
+                        <!-- self-explanatory -->
+                        <formatAnnotations/>
+                        <!-- fixes formatting of type annotations, see below -->
+                    </java>
+                    <pom>
+                        <!-- These are the defaults, you can override if you want -->
+                        <includes>
+                            <include>pom.xml</include>
+                        </includes>
+                        <sortPom>
+                            <encoding>UTF-8</encoding>
+                            <!-- The encoding of the pom files -->
+                            <lineSeparator>${line.separator}</lineSeparator>
+                            <!-- line separator to use -->
+                            <expandEmptyElements>false</expandEmptyElements>
+                            <!-- Should empty elements be expanded-->
+                            <spaceBeforeCloseEmptyElement>false</spaceBeforeCloseEmptyElement>
+                            <!-- Should a space be added inside self-closing elements-->
+                            <keepBlankLines>false</keepBlankLines>
+                            <!-- Keep empty lines -->
+                            <nrOfIndentSpace>4</nrOfIndentSpace>
+                            <!-- Indentation -->
+                            <indentBlankLines>false</indentBlankLines>
+                            <!-- Should empty lines be indented -->
+                            <indentSchemaLocation>false</indentSchemaLocation>
+                            <!-- Should schema locations be indended -->
+                            <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+                            <!-- Sort order of elements: https://github.com/Ekryd/sortpom/wiki/PredefinedSortOrderProfiles-->
+                            <sortOrderFile/>
+                            <!-- Custom sort order of elements: https://raw.githubusercontent.com/Ekryd/sortpom/master/sorter/src/main/resources/custom_1.xml -->
+                            <sortDependencies/>
+                            <!-- Sort dependencies: https://github.com/Ekryd/sortpom/wiki/SortDependencies-->
+                            <sortDependencyExclusions/>
+                            <!-- Sort dependency exclusions: https://github.com/Ekryd/sortpom/wiki/SortDependencies-->
+                            <sortPlugins/>
+                            <!-- Sort plugins: https://github.com/Ekryd/sortpom/wiki/SortPlugins -->
+                            <sortProperties>true</sortProperties>
+                            <!-- Sort properties -->
+                            <sortModules>false</sortModules>
+                            <!-- Sort modules -->
+                            <sortExecutions>true</sortExecutions>
+                            <!-- Sort plugin executions -->
+                        </sortPom>
+                        <!-- has its own section below -->
+                    </pom>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

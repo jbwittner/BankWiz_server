@@ -1,2 +1,2 @@
-# bankwiz_server
+# Bankwiz Server
 Server of Bankwiz application
