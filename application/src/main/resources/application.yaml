@@ -1,5 +1,7 @@
 ---
 application:
+  title: Bankwiz server
+  version: 1.0.0-SNAPSHOT
   url: http://localhost:9595
   cors-allowed-origins: ""
   server:
