@@ -1,0 +1,14 @@
+---
+application:
+  url: http://localhost:9595
+  cors-allowed-origins: ""
+  oauth2:
+    issuer-uri: https://example.com/
+    audience: audience
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "${application.oauth2.issuer-uri}"
+          jwk-set-uri: "${application.oauth2.issuer-uri}.well-known/jwks.json"
