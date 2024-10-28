@@ -1,0 +1,17 @@
+---
+services:
+  serverapp:
+    depends_on:
+      - db
+    image: ghcr.io/jbwittner/bankwiz_server:develop-latest
+    container_name: bankwiz_server
+    ports:
+      - 9595:9595
+    environment:
+      APPLICATION_DB_HOST: db
+      APPLICATION_DB_PORT: 3306
+      APPLICATION_DB_NAME: bankwiz_db
+      APPLICATION_DB_USER: bankwiz_user
+      APPLICATION_DB_PASSWORD: Bankwiz2024
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+      PROFILES: development
