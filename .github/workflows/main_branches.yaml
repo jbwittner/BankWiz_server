@@ -3,7 +3,7 @@ name: Develop branch CI
 "on":
   push:
     branches:
-      - develop
+    - develop
 concurrency:
   group: "${{ github.workflow }}-${{ github.head_ref }}"
   cancel-in-progress: true
@@ -12,135 +12,135 @@ jobs:
     runs-on: ubuntu-22.04
     name: Build and install application
     steps:
-      - name: Checkout Git repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup action
-        uses: ./.github/actions/setup-env
-      - name: Install java part
-        run: mvn -B -DskipTests clean install -Dcheckstyle.skip
-      - name: Offline Package
-        run: mvn -B dependency:go-offline
+    - name: Checkout Git repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup action
+      uses: ./.github/actions/setup-env
+    - name: Install java part
+      run: mvn -B -DskipTests clean install -Dcheckstyle.skip
+    - name: Offline Package
+      run: mvn -B dependency:go-offline
   tests_sonar_domain:
     runs-on: ubuntu-22.04
     name: Test domain
     env:
       SONAR_TOKEN: "${{ secrets.SONAR_TOKEN }}"
     needs:
-      - build-install-application
+    - build-install-application
     steps:
-      - name: Checkout Git repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup action
-        uses: ./.github/actions/setup-env
-      - name: Test and analyse
-        working-directory: domain
-        run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+    - name: Checkout Git repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup action
+      uses: ./.github/actions/setup-env
+    - name: Test and analyse
+      working-directory: domain
+      run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
   tests_sonar_infrastructure_api_rest:
     runs-on: ubuntu-22.04
     name: Test API REST
     env:
       SONAR_TOKEN: "${{ secrets.SONAR_TOKEN }}"
     needs:
-      - build-install-application
+    - build-install-application
     steps:
-      - name: Checkout Git repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup action
-        uses: ./.github/actions/setup-env
-      - name: Test and analyse
-        working-directory: infrastructure/api-rest
-        run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+    - name: Checkout Git repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup action
+      uses: ./.github/actions/setup-env
+    - name: Test and analyse
+      working-directory: infrastructure/api-rest
+      run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
   tests_sonar_infrastructure_spi_jpa:
     runs-on: ubuntu-22.04
     name: Test SPI JPA
     env:
       SONAR_TOKEN: "${{ secrets.SONAR_TOKEN }}"
     needs:
-      - build-install-application
+    - build-install-application
     steps:
-      - name: Checkout Git repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup action
-        uses: ./.github/actions/setup-env
-      - name: Test and analyse
-        working-directory: infrastructure/spi-jpa
-        run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+    - name: Checkout Git repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup action
+      uses: ./.github/actions/setup-env
+    - name: Test and analyse
+      working-directory: infrastructure/spi-jpa
+      run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
   tests_sonar_application:
     runs-on: ubuntu-22.04
     name: Test application
     env:
       SONAR_TOKEN: "${{ secrets.SONAR_TOKEN }}"
     needs:
-      - build-install-application
+    - build-install-application
     steps:
-      - name: Checkout Git repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup action
-        uses: ./.github/actions/setup-env
-      - name: Test and analyse
-        working-directory: application
-        run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+    - name: Checkout Git repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup action
+      uses: ./.github/actions/setup-env
+    - name: Test and analyse
+      working-directory: application
+      run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
   build_push_docker:
     runs-on: ubuntu-22.04
     name: Build and push docker image
     needs:
-      - tests_sonar_domain
-      - tests_sonar_infrastructure_api_rest
-      - tests_sonar_infrastructure_spi_jpa
-      - tests_sonar_application
+    - tests_sonar_domain
+    - tests_sonar_infrastructure_api_rest
+    - tests_sonar_infrastructure_spi_jpa
+    - tests_sonar_application
     permissions:
       packages: write
     steps:
-      - name: Checkout Git repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: "${{ github.actor }}"
-          password: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Build
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: docker/Dockerfile
-          platforms: linux/amd64
-          push: true
-          tags: |
-            ghcr.io/jbwittner/bankwizz_server:develop-latest
-            ghcr.io/jbwittner/bankwizz_server:develop-${{ github.sha }}
+    - name: Checkout Git repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: "${{ github.actor }}"
+        password: "${{ secrets.GITHUB_TOKEN }}"
+    - name: Build
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        file: docker/Dockerfile
+        platforms: linux/amd64
+        push: true
+        tags: |
+          ghcr.io/jbwittner/bankwizz_server:develop-latest
+          ghcr.io/jbwittner/bankwizz_server:develop-${{ github.sha }}
   push_maven:
     runs-on: ubuntu-22.04
     name: Push maven package
     needs:
-      - tests_sonar_domain
-      - tests_sonar_infrastructure_api_rest
-      - tests_sonar_infrastructure_spi_jpa
-      - tests_sonar_application
+    - tests_sonar_domain
+    - tests_sonar_infrastructure_api_rest
+    - tests_sonar_infrastructure_spi_jpa
+    - tests_sonar_application
     permissions:
       packages: write
     steps:
-      - name: Checkout Git repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup action
-        uses: ./.github/actions/setup-env
-      - name: Publish application
-        run: mvn -B deploy -DskipTests
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    - name: Checkout Git repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup action
+      uses: ./.github/actions/setup-env
+    - name: Publish application
+      run: mvn -B deploy -DskipTests
+      env:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

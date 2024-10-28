@@ -4,17 +4,17 @@ description: Composite for setup actions
 runs:
   using: composite
   steps:
-    - name: Setup Java
-      uses: actions/setup-java@v4
-      with:
-        distribution: zulu
-        java-version: 21
-    - name: Cache maven
-      uses: actions/cache@v4
-      env:
-        cache-name: cache-maven
-      with:
-        path: /home/runner/.m2/repository
-        key: "${{ runner.os }}-maven-${{ github.head_ref }}-${{ hashFiles('domain')}}-${{\
+  - name: Setup Java
+    uses: actions/setup-java@v4
+    with:
+      distribution: zulu
+      java-version: 21
+  - name: Cache maven
+    uses: actions/cache@v4
+    env:
+      cache-name: cache-maven
+    with:
+      path: /home/runner/.m2/repository
+      key: "${{ runner.os }}-maven-${{ github.head_ref }}-${{ hashFiles('domain')}}-${{\
         \ hashFiles('infrastructure')}}"
-        restore-keys: "${{ runner.os }}-maven"
+      restore-keys: "${{ runner.os }}-maven"

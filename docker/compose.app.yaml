@@ -2,11 +2,11 @@
 services:
   serverapp:
     depends_on:
-      - db
+    - db
     image: ghcr.io/jbwittner/bankwiz_server:develop-latest
     container_name: bankwiz_server
     ports:
-      - 9595:9595
+    - 9595:9595
     environment:
       APPLICATION_DB_HOST: db
       APPLICATION_DB_PORT: 3306
