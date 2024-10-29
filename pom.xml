@@ -30,7 +30,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>jbwittner</sonar.organization>
-        <springboot.version>3.3.4</springboot.version>
+        <springboot.version>3.3.5</springboot.version>
     </properties>
     <dependencies>
         <!-- Dev -->
