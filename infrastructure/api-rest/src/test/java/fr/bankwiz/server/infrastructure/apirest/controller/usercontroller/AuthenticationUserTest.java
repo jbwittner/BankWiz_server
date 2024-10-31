@@ -20,7 +20,9 @@ class AuthenticationUserTest extends UserControllerTestBase {
     @DisplayName("User not authenticated")
     void user_not_authenticated() {
         // 👉 When
-        this.apiTestHelper.getRequestWithoutAuthentication(url, HttpStatus.UNAUTHORIZED);
+        final var resultCall = this.apiTestHelper.getRequestWithoutAuthentication(url);
+
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.UNAUTHORIZED);
     }
 
     @Test
@@ -31,10 +33,12 @@ class AuthenticationUserTest extends UserControllerTestBase {
         Mockito.when(this.userDomainApi.authenticationUser()).thenReturn(userDomain);
 
         // 👉 When
-        final var result = this.apiTestHelper.getRequest(url, HttpStatus.OK, UserDTO.class);
+        final var resultCall = this.apiTestHelper.getRequest(url, UserDTO.class);
 
         // ✅ Then
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.OK);
+
         final UserDTO expectedUserDTO = this.restUserDomainMapper.toDTO(userDomain);
-        Assertions.assertThat(result).isEqualTo(expectedUserDTO);
+        Assertions.assertThat(resultCall.result()).isEqualTo(expectedUserDTO);
     }
 }

@@ -16,10 +16,11 @@ class StatusControllerTest extends ApiRestTestsBase {
         final String url = base_url + Endpoints.Status.PUBLIC;
 
         // 👉 When
-        final String value = this.apiTestHelper.getRequest(url, HttpStatus.OK, String.class);
+        final var resultCall = this.apiTestHelper.getRequest(url, String.class);
 
         // ✅ Then
-        Assertions.assertThat(value).isEqualTo("Public_status_ok");
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(resultCall.result()).isEqualTo("Public_status_ok");
     }
 
     @Test
@@ -28,7 +29,10 @@ class StatusControllerTest extends ApiRestTestsBase {
         final String url = base_url + Endpoints.Status.PRIVATE;
 
         // 👉 When
-        this.apiTestHelper.getRequestWithoutAuthentication(url, HttpStatus.UNAUTHORIZED);
+        final var resultCall = this.apiTestHelper.getRequestWithoutAuthentication(url);
+
+        // ✅ Then
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.UNAUTHORIZED);
     }
 
     @Test
@@ -37,7 +41,10 @@ class StatusControllerTest extends ApiRestTestsBase {
         final String url = base_url + Endpoints.Status.ADMIN;
 
         // 👉 When
-        this.apiTestHelper.getRequestWithoutAuthentication(url, HttpStatus.UNAUTHORIZED);
+        final var resultCall = this.apiTestHelper.getRequestWithoutAuthentication(url);
+
+        // ✅ Then
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.UNAUTHORIZED);
     }
 
     @Test
@@ -46,10 +53,11 @@ class StatusControllerTest extends ApiRestTestsBase {
         final String url = base_url + Endpoints.Status.PRIVATE;
 
         // 👉 When
-        final String value = this.apiTestHelper.getRequest(url, HttpStatus.OK, String.class);
+        final var resultCall = this.apiTestHelper.getRequest(url, String.class);
 
         // ✅ Then
-        Assertions.assertThat(value).isEqualTo("Private_status_ok");
+        Assertions.assertThat(resultCall.result()).isEqualTo("Private_status_ok");
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.OK);
     }
 
     @Test
@@ -58,7 +66,10 @@ class StatusControllerTest extends ApiRestTestsBase {
         final String url = base_url + Endpoints.Status.ADMIN;
 
         // 👉 When
-        this.apiTestHelper.getRequest(url, HttpStatus.FORBIDDEN, "SCOPE_admin:other");
+        final var resultCall = this.apiTestHelper.getRequest(url, "SCOPE_admin:other");
+
+        // ✅ Then
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.FORBIDDEN);
     }
 
     @Test
@@ -67,10 +78,10 @@ class StatusControllerTest extends ApiRestTestsBase {
         final String url = base_url + Endpoints.Status.ADMIN;
 
         // 👉 When
-        final String value =
-                this.apiTestHelper.getRequest(url, HttpStatus.OK, String.class, "SCOPE_admin:configuration");
+        final var resultCall = this.apiTestHelper.getRequest(url, String.class, "SCOPE_admin:configuration");
 
         // ✅ Then
-        Assertions.assertThat(value).isEqualTo("Private_status_ok");
+        Assertions.assertThat(resultCall.result()).isEqualTo("Admin_status_ok");
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.OK);
     }
 }

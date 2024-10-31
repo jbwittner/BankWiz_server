@@ -33,10 +33,11 @@ class GlobalExceptionHandlerTest extends ApiRestTestsBase {
         final String url = "/" + Endpoints.User.BASE + "/" + Endpoints.User.AUTHENTICATE;
 
         // 👉 When
-        final var exceptionDTO =
-                this.apiTestHelper.getRequest(url, HttpStatus.BAD_REQUEST, FunctionalExceptionDTO.class);
+        final var resultCall = this.apiTestHelper.getRequest(url, FunctionalExceptionDTO.class);
 
         // ✅ Then
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.BAD_REQUEST);
+        final var exceptionDTO = resultCall.result();
         Assertions.assertThat(exceptionDTO.exception()).isEqualTo("TestException");
         Assertions.assertThat(exceptionDTO.message()).isEqualTo("value1 : " + value1 + " / value2 : " + value2);
         Assertions.assertThat(exceptionDTO.attributes().get("value1")).isEqualTo(value1);

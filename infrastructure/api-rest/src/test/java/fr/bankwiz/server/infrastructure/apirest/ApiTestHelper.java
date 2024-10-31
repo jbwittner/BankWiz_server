@@ -36,12 +36,10 @@ public class ApiTestHelper {
                 .build();
     }
 
-    private <T> T getRequest(
-            final String url,
-            final HttpStatus httpStatus,
-            final Class<T> T,
-            final Boolean authenticated,
-            final String... scopes) {
+    public record ResultCall<T>(T result, HttpStatus httpStatus) {}
+
+    private <T> ResultCall<T> getRequest(
+            final String url, final Class<T> T, final Boolean authenticated, final String... scopes) {
         try {
 
             final MockHttpServletRequestBuilder builder;
@@ -59,19 +57,23 @@ public class ApiTestHelper {
 
             final var mvcResult = this.mvc.perform(builder).andReturn();
 
-            final Integer statusCode = mvcResult.getResponse().getStatus();
+            final int statusCode = mvcResult.getResponse().getStatus();
 
-            Assertions.assertThat(statusCode).isEqualTo(httpStatus.value());
+            final HttpStatus httpStatus = HttpStatus.valueOf(statusCode);
 
             final String resultAsString = mvcResult.getResponse().getContentAsString();
 
+            final Object result;
+
             if (String.class.equals(T)) {
-                return (T) resultAsString;
+                result = resultAsString;
             } else if (Void.class.equals(T)) {
-                return null;
+                result = null;
             } else {
-                return objectMapper.readValue(resultAsString, T);
+                result = objectMapper.readValue(resultAsString, T);
             }
+
+            return new ResultCall<T>((T) result, httpStatus);
 
         } catch (final Exception e) {
             Assertions.fail(String.valueOf(e));
@@ -79,15 +81,15 @@ public class ApiTestHelper {
         }
     }
 
-    public <T> T getRequest(final String url, final HttpStatus httpStatus, final Class<T> T, final String... scopes) {
-        return this.getRequest(url, httpStatus, T, true, scopes);
+    public <T> ResultCall<T> getRequest(final String url, final Class<T> T, final String... scopes) {
+        return this.getRequest(url, T, true, scopes);
     }
 
-    public void getRequest(final String url, final HttpStatus httpStatus, final String... scopes) {
-        this.getRequest(url, httpStatus, Void.class, true, scopes);
+    public ResultCall<Void> getRequest(final String url, final String... scopes) {
+        return this.getRequest(url, Void.class, true, scopes);
     }
 
-    public void getRequestWithoutAuthentication(final String url, final HttpStatus httpStatus) {
-        this.getRequest(url, httpStatus, Void.class, false);
+    public ResultCall<Void> getRequestWithoutAuthentication(final String url) {
+        return this.getRequest(url, Void.class, false);
     }
 }
