@@ -8,43 +8,80 @@ import fr.bankwiz.server.infrastructure.apirest.ApiRestTestsBase;
 
 class StatusControllerTest extends ApiRestTestsBase {
 
-    final String base_url = "/" + Endpoints.Status.BASE + "/";
+    final String baseUrl = "/" + Endpoints.Status.BASE + "/";
 
     @Test
     void public_unauthenticated() {
-        final String url = base_url + Endpoints.Status.PUBLIC;
-        final String value = this.apiTestHelper.getRequest(url, HttpStatus.OK, String.class);
-        Assertions.assertThat(value).isEqualTo("Public_status_ok");
+        // ⚙ Given that
+        final String url = baseUrl + Endpoints.Status.PUBLIC;
+
+        // 👉 When
+        final var resultCall = this.apiTestHelper.getRequest(url, String.class);
+
+        // ✅ Then
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(resultCall.result()).isEqualTo("Public_status_ok");
     }
 
     @Test
     void private_unauthenticated() {
-        final String url = base_url + Endpoints.Status.PRIVATE;
-        this.apiTestHelper.getRequestWithoutAuthentication(url, HttpStatus.UNAUTHORIZED);
+        // ⚙ Given that
+        final String url = baseUrl + Endpoints.Status.PRIVATE;
+
+        // 👉 When
+        final var resultCall = this.apiTestHelper.getRequestWithoutAuthentication(url);
+
+        // ✅ Then
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.UNAUTHORIZED);
     }
 
     @Test
     void admin_unauthenticated() {
-        final String url = base_url + Endpoints.Status.ADMIN;
-        this.apiTestHelper.getRequestWithoutAuthentication(url, HttpStatus.UNAUTHORIZED);
+        // ⚙ Given that
+        final String url = baseUrl + Endpoints.Status.ADMIN;
+
+        // 👉 When
+        final var resultCall = this.apiTestHelper.getRequestWithoutAuthentication(url);
+
+        // ✅ Then
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.UNAUTHORIZED);
     }
 
     @Test
     void private_ok() {
-        final String url = base_url + Endpoints.Status.PRIVATE;
-        final String value = this.apiTestHelper.getRequest(url, HttpStatus.OK, String.class);
-        Assertions.assertThat(value).isEqualTo("Private_status_ok");
+        // ⚙ Given that
+        final String url = baseUrl + Endpoints.Status.PRIVATE;
+
+        // 👉 When
+        final var resultCall = this.apiTestHelper.getRequest(url, String.class);
+
+        // ✅ Then
+        Assertions.assertThat(resultCall.result()).isEqualTo("Private_status_ok");
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.OK);
     }
 
     @Test
     void admin_without_good_right() {
-        final String url = base_url + Endpoints.Status.ADMIN;
-        this.apiTestHelper.getRequest(url, HttpStatus.FORBIDDEN, "SCOPE_admin:other");
+        // ⚙ Given that
+        final String url = baseUrl + Endpoints.Status.ADMIN;
+
+        // 👉 When
+        final var resultCall = this.apiTestHelper.getRequest(url, "SCOPE_admin:other");
+
+        // ✅ Then
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.FORBIDDEN);
     }
 
     @Test
     void admin_ok() {
-        final String url = base_url + Endpoints.Status.ADMIN;
-        this.apiTestHelper.getRequest(url, HttpStatus.OK, String.class, "SCOPE_admin:configuration");
+        // ⚙ Given that
+        final String url = baseUrl + Endpoints.Status.ADMIN;
+
+        // 👉 When
+        final var resultCall = this.apiTestHelper.getRequest(url, String.class, "SCOPE_admin:configuration");
+
+        // ✅ Then
+        Assertions.assertThat(resultCall.result()).isEqualTo("Admin_status_ok");
+        Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.OK);
     }
 }

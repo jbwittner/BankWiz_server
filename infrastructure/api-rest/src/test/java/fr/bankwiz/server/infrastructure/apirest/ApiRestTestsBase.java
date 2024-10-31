@@ -7,21 +7,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
-import fr.bankwiz.server.domain.api.SimpleApi;
+import fr.bankwiz.server.domain.api.UserDomainApi;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles(value = {"test"})
 public class ApiRestTestsBase {
 
-    @MockBean
-    protected SimpleApi simpleApi;
-
     @Autowired
     protected ApiTestHelper apiTestHelper;
 
+    @MockBean
+    protected UserDomainApi userDomainApi;
+
     @BeforeEach
     void beforeEach() {
-        Mockito.reset(simpleApi);
-        apiTestHelper.setup();
+        Mockito.reset(this.userDomainApi);
+        this.apiTestHelper.setup();
     }
 }
