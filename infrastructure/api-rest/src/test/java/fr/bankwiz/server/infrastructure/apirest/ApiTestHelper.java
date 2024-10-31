@@ -39,7 +39,7 @@ public class ApiTestHelper {
     public record ResultCall<T>(T result, HttpStatus httpStatus) {}
 
     private <T> ResultCall<T> getRequest(
-            final String url, final Class<T> T, final Boolean authenticated, final String... scopes) {
+            final String url, final Class<T> classResult, final Boolean authenticated, final String... scopes) {
         try {
 
             final MockHttpServletRequestBuilder builder;
@@ -65,15 +65,15 @@ public class ApiTestHelper {
 
             final Object result;
 
-            if (String.class.equals(T)) {
+            if (String.class.equals(classResult)) {
                 result = resultAsString;
-            } else if (Void.class.equals(T)) {
+            } else if (Void.class.equals(classResult)) {
                 result = null;
             } else {
-                result = objectMapper.readValue(resultAsString, T);
+                result = objectMapper.readValue(resultAsString, classResult);
             }
 
-            return new ResultCall<T>((T) result, httpStatus);
+            return new ResultCall<>((T) result, httpStatus);
 
         } catch (final Exception e) {
             Assertions.fail(String.valueOf(e));

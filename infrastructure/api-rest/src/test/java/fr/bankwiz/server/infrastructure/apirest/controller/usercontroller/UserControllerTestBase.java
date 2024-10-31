@@ -10,7 +10,7 @@ import fr.bankwiz.server.infrastructure.apirest.controller.data.mapper.RestUserD
 @DisplayName("User Controller Test Base")
 class UserControllerTestBase extends ApiRestTestsBase {
 
-    protected final String base_url = "/" + Endpoints.User.BASE + "/";
+    protected final String baseUrl = "/" + Endpoints.User.BASE + "/";
 
     @Autowired
     protected RestUserDomainMapper restUserDomainMapper;

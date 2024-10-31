@@ -22,7 +22,7 @@ class FindByAuthIdTest extends JPAUserDomainSpiTestBase {
         final var optional = jpaUserDomainSpi.findByAuthId(authId);
 
         // ✅ Then
-        assertThat(optional.isPresent()).isFalse();
+        assertThat(optional).isNotPresent();
     }
 
     @Test

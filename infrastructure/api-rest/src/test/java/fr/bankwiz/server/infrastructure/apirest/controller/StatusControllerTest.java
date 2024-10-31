@@ -8,12 +8,12 @@ import fr.bankwiz.server.infrastructure.apirest.ApiRestTestsBase;
 
 class StatusControllerTest extends ApiRestTestsBase {
 
-    final String base_url = "/" + Endpoints.Status.BASE + "/";
+    final String baseUrl = "/" + Endpoints.Status.BASE + "/";
 
     @Test
     void public_unauthenticated() {
         // ⚙ Given that
-        final String url = base_url + Endpoints.Status.PUBLIC;
+        final String url = baseUrl + Endpoints.Status.PUBLIC;
 
         // 👉 When
         final var resultCall = this.apiTestHelper.getRequest(url, String.class);
@@ -26,7 +26,7 @@ class StatusControllerTest extends ApiRestTestsBase {
     @Test
     void private_unauthenticated() {
         // ⚙ Given that
-        final String url = base_url + Endpoints.Status.PRIVATE;
+        final String url = baseUrl + Endpoints.Status.PRIVATE;
 
         // 👉 When
         final var resultCall = this.apiTestHelper.getRequestWithoutAuthentication(url);
@@ -38,7 +38,7 @@ class StatusControllerTest extends ApiRestTestsBase {
     @Test
     void admin_unauthenticated() {
         // ⚙ Given that
-        final String url = base_url + Endpoints.Status.ADMIN;
+        final String url = baseUrl + Endpoints.Status.ADMIN;
 
         // 👉 When
         final var resultCall = this.apiTestHelper.getRequestWithoutAuthentication(url);
@@ -50,7 +50,7 @@ class StatusControllerTest extends ApiRestTestsBase {
     @Test
     void private_ok() {
         // ⚙ Given that
-        final String url = base_url + Endpoints.Status.PRIVATE;
+        final String url = baseUrl + Endpoints.Status.PRIVATE;
 
         // 👉 When
         final var resultCall = this.apiTestHelper.getRequest(url, String.class);
@@ -63,7 +63,7 @@ class StatusControllerTest extends ApiRestTestsBase {
     @Test
     void admin_without_good_right() {
         // ⚙ Given that
-        final String url = base_url + Endpoints.Status.ADMIN;
+        final String url = baseUrl + Endpoints.Status.ADMIN;
 
         // 👉 When
         final var resultCall = this.apiTestHelper.getRequest(url, "SCOPE_admin:other");
@@ -75,7 +75,7 @@ class StatusControllerTest extends ApiRestTestsBase {
     @Test
     void admin_ok() {
         // ⚙ Given that
-        final String url = base_url + Endpoints.Status.ADMIN;
+        final String url = baseUrl + Endpoints.Status.ADMIN;
 
         // 👉 When
         final var resultCall = this.apiTestHelper.getRequest(url, String.class, "SCOPE_admin:configuration");
