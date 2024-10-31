@@ -24,11 +24,11 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `USER_ACCOUNTS`
+-- Table structure for table 'USER_ACCOUNTS'
 --
 DROP
     TABLE
-        IF EXISTS ` USER_ACCOUNTS `;
+        IF EXISTS ' USER_ACCOUNTS ';
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 
@@ -36,14 +36,14 @@ DROP
 
 CREATE
     TABLE
-        ` USER_ACCOUNTS `(
-            ` USER_ID ` VARCHAR(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-            ` AUTH_ID ` VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-            ` EMAIL ` VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-            ` FULL_NAME ` VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-            ` NICK_NAME ` VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+        ' USER_ACCOUNTS '(
+            ' USER_ID ' VARCHAR(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+            ' AUTH_ID ' VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+            ' EMAIL ' VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+            ' FULL_NAME ' VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+            ' NICK_NAME ' VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
             PRIMARY KEY(
-                ` USER_ID `
+                ' USER_ID '
             )
         ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
