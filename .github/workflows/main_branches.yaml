@@ -121,8 +121,8 @@ jobs:
         platforms: linux/amd64
         push: true
         tags: |
-          ghcr.io/jbwittner/bankwizz_server:develop-latest
-          ghcr.io/jbwittner/bankwizz_server:develop-${{ github.sha }}
+          ghcr.io/jbwittner/bankwiz_server:develop-latest
+          ghcr.io/jbwittner/bankwiz_server:develop-${{ github.sha }}
   push_maven:
     runs-on: ubuntu-22.04
     name: Push maven package
