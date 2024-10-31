@@ -18,10 +18,10 @@ class FindByAuthIdTest extends JPAUserDomainSpiTestBase {
     @Test
     @DisplayName("User not exist")
     void user_not_exist() {
-        // When
+        // 👉 When
         final var optional = jpaUserDomainSpi.findByAuthId(authId);
 
-        // Then
+        // ✅ Then
         assertThat(optional.isPresent()).isFalse();
     }
 
@@ -31,12 +31,13 @@ class FindByAuthIdTest extends JPAUserDomainSpiTestBase {
             scripts = {"/sql/jpauserdomainspi/findbyauthid/userexist.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     void user_exist() {
-        // When
+        // ⚙ Given that
         final var optional = jpaUserDomainSpi.findByAuthId(authId);
 
-        // Then
+        // 👉 When
         assertThat(optional.isPresent()).isTrue();
 
+        // ✅ Then
         final UserDomain userDomain = optional.get();
         final UUID id = UUID.fromString("0192e249-09c5-7c42-a747-3b5e1979bb72");
         assertThat(userDomain.id()).isEqualTo(id);

@@ -24,6 +24,7 @@ class GlobalExceptionHandlerTest extends ApiRestTestsBase {
 
     @Test
     void handle_functional_exception() {
+        // ⚙ Given that
         final String value1 = Instancio.create(String.class);
         final String value2 = Instancio.create(String.class);
         Mockito.when(this.userDomainApi.authenticationUser())
@@ -31,9 +32,11 @@ class GlobalExceptionHandlerTest extends ApiRestTestsBase {
 
         final String url = "/" + Endpoints.User.BASE + "/" + Endpoints.User.AUTHENTICATE;
 
+        // 👉 When
         final var exceptionDTO =
                 this.apiTestHelper.getRequest(url, HttpStatus.BAD_REQUEST, FunctionalExceptionDTO.class);
 
+        // ✅ Then
         Assertions.assertThat(exceptionDTO.exception()).isEqualTo("TestException");
         Assertions.assertThat(exceptionDTO.message()).isEqualTo("value1 : " + value1 + " / value2 : " + value2);
         Assertions.assertThat(exceptionDTO.attributes().get("value1")).isEqualTo(value1);

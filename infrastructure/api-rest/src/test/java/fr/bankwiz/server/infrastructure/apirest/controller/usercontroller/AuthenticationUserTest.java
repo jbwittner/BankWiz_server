@@ -19,20 +19,21 @@ class AuthenticationUserTest extends UserControllerTestBase {
     @Test
     @DisplayName("User not authenticated")
     void user_not_authenticated() {
+        // 👉 When
         this.apiTestHelper.getRequestWithoutAuthentication(url, HttpStatus.UNAUTHORIZED);
     }
 
     @Test
     @DisplayName("User authenticated")
     void user_authenticated() {
-        // Given
+        // ⚙ Given that
         final UserDomain userDomain = Instancio.create(UserDomain.class);
         Mockito.when(this.userDomainApi.authenticationUser()).thenReturn(userDomain);
 
-        // When
+        // 👉 When
         final var result = this.apiTestHelper.getRequest(url, HttpStatus.OK, UserDTO.class);
 
-        // Then
+        // ✅ Then
         final UserDTO expectedUserDTO = this.restUserDomainMapper.toDTO(userDomain);
         Assertions.assertThat(result).isEqualTo(expectedUserDTO);
     }

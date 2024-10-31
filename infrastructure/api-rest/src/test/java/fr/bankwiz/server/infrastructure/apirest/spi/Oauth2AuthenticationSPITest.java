@@ -49,14 +49,18 @@ public class Oauth2AuthenticationSPITest extends ApiRestTestsBase {
 
     @Test
     void get_current_user_authentication_ok() {
+        // ⚙ Given that
         final SecurityContext securityContext = Mockito.mock(SecurityContext.class);
         final Jwt jwt =
                 Instancio.of(Jwt.class).set(field(Jwt::getTokenValue), "200OK").create();
         Mockito.when(securityContext.getAuthentication()).thenReturn(new JwtAuthenticationToken(jwt, null));
         SecurityContextHolder.setContext(securityContext);
 
+        // 👉 When
         final UserAuthenticationDomain userAuthenticationDomain =
                 oauth2AuthenticationSpi.getCurrentUserAuthentication();
+
+        // ✅ Then
         assertThat(userAuthenticationDomain).isNotNull();
         assertThat(userAuthenticationDomain.sub()).isEqualTo("google-oauth2|123456789");
         assertThat(userAuthenticationDomain.email()).isEqualTo("toto@email.com");
@@ -66,12 +70,14 @@ public class Oauth2AuthenticationSPITest extends ApiRestTestsBase {
 
     @Test
     void get_current_user_authentication_401() {
+        // ⚙ Given that
         final SecurityContext securityContext = Mockito.mock(SecurityContext.class);
         final Jwt jwt =
                 Instancio.of(Jwt.class).set(field(Jwt::getTokenValue), "401NOK").create();
         Mockito.when(securityContext.getAuthentication()).thenReturn(new JwtAuthenticationToken(jwt, null));
         SecurityContextHolder.setContext(securityContext);
 
+        // 👉 When
         assertThatExceptionOfType(Auth0ErrorException.class)
                 .isThrownBy(() -> oauth2AuthenticationSpi.getCurrentUserAuthentication());
     }

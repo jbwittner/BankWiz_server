@@ -11,13 +11,13 @@ class SaveTest extends JPAUserDomainSpiTestBase {
 
     @Test
     void save() {
-        // Given
+        // ⚙ Given that
         final var userDomain = Instancio.create(UserDomain.class);
 
-        // When
+        // 👉 When
         final var savedUserDomain = jpaUserDomainSpi.save(userDomain);
 
-        // Then
+        // ✅ Then
         assertThat(savedUserDomain).isEqualTo(userDomain);
         final var optional = jpaUserDomainSpi.findById(savedUserDomain.id());
         assertThat(optional).isPresent();
