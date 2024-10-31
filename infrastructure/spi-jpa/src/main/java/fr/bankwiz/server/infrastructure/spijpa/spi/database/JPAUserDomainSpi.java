@@ -20,7 +20,7 @@ public class JPAUserDomainSpi implements UserDomainSpi {
     private final JPAUserDomainMapper jpaUserDomainMapper;
 
     @Override
-    public Optional<UserDomain> findByAuthId(String authId) {
+    public Optional<UserDomain> findByAuthId(final String authId) {
         final var optional = userEntityRepository.findByAuthId(authId);
 
         if (optional.isPresent()) {
@@ -32,14 +32,14 @@ public class JPAUserDomainSpi implements UserDomainSpi {
     }
 
     @Override
-    public UserDomain save(UserDomain userDomain) {
+    public UserDomain save(final UserDomain userDomain) {
         final UserEntity userEntity = jpaUserDomainMapper.toEntity(userDomain);
         final UserEntity savedUserEntity = userEntityRepository.save(userEntity);
         return jpaUserDomainMapper.toDomain(savedUserEntity);
     }
 
     @Override
-    public Optional<UserDomain> findById(UUID id) {
+    public Optional<UserDomain> findById(final UUID id) {
         final var optional = userEntityRepository.findById(id);
 
         if (optional.isPresent()) {

@@ -21,7 +21,7 @@ import lombok.*;
 public class UserEntity {
 
     @Id
-    @Column(name = "USER_ID", nullable = false, updatable = false, insertable = false)
+    @Column(name = "USER_ID", nullable = false, updatable = false, insertable = false, columnDefinition = "VARCHAR(36)")
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
 
