@@ -13,15 +13,15 @@ import fr.bankwiz.server.domain.api.UserDomainApi;
 @ActiveProfiles(value = {"test"})
 public class ApiRestTestsBase {
 
-    @MockBean
-    protected UserDomainApi userDomainApi;
-
     @Autowired
     protected ApiTestHelper apiTestHelper;
 
+    @MockBean
+    protected UserDomainApi userDomainApi;
+
     @BeforeEach
     void beforeEach() {
-        Mockito.reset(userDomainApi);
-        apiTestHelper.setup();
+        Mockito.reset(this.userDomainApi);
+        this.apiTestHelper.setup();
     }
 }
