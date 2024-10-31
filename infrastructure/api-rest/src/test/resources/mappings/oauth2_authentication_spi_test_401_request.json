@@ -1,17 +1,17 @@
 {
   "request": {
-    "method": "GET",
-    "url": "/userinfo",
     "headers": {
       "Authorization": {
         "equalTo": "Bearer 401NOK"
       }
-    }
+    },
+    "method": "GET",
+    "url": "/userinfo"
   },
   "response": {
-    "status": 401,
     "headers": {
       "Content-Type": "application/json"
-    }
+    },
+    "status": 401
   }
 }

@@ -122,6 +122,19 @@
                         <!-- has its own section below -->
                         <!-- has its own section below -->
                     </yaml>
+                    <json>
+                        <includes>
+                            <!-- You have to set the target manually -->
+                            <include>src/**/*.json</include>
+                        </includes>
+                        <gson>
+                            <indentSpaces>2</indentSpaces>
+                            <!-- optional: specify the number of spaces to use -->
+                            <sortByKeys>false</sortByKeys>
+                            <!-- optional: sort JSON by its keys -->
+                        </gson>
+                        <!-- has its own section below -->
+                    </json>
                     <!-- optional: limit format enforcement to just the files changed by this feature branch -->
                     <java>
                         <!-- These are the defaults, you can override if you want -->

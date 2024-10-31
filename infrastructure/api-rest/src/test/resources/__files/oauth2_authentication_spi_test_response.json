@@ -1,11 +1,11 @@
 {
   "sub": "google-oauth2|123456789",
-  "given_name": "totoGivenName",
-  "family_name": "totoFamilyName",
+  "email_verified": true,
+  "updated_at": "2024-10-31T09:48:03.863Z",
   "nickname": "totoNickname",
   "name": "totoName",
+  "given_name": "totoGivenName",
+  "family_name": "totoFamilyName",
   "picture": "pictureUrl",
-  "updated_at": "2024-10-31T09:48:03.863Z",
-  "email": "toto@email.com",
-  "email_verified": true
+  "email": "toto@email.com"
 }
