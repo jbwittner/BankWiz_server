@@ -22,7 +22,7 @@ class FindByIdTest extends JPAUserDomainSpiTestBase {
         final var optional = jpaUserDomainSpi.findById(uuid);
 
         // ✅ Then
-        assertThat(optional.isPresent()).isFalse();
+        assertThat(optional).isEmpty();
     }
 
     @Test
@@ -35,7 +35,7 @@ class FindByIdTest extends JPAUserDomainSpiTestBase {
         final var optional = jpaUserDomainSpi.findById(uuid);
 
         // ✅ Then
-        assertThat(optional.isPresent()).isTrue();
+        assertThat(optional).isPresent();
 
         final UserDomain userDomain = optional.get();
 

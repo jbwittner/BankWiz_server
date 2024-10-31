@@ -35,7 +35,7 @@ class FindByAuthIdTest extends JPAUserDomainSpiTestBase {
         final var optional = jpaUserDomainSpi.findByAuthId(authId);
 
         // 👉 When
-        assertThat(optional.isPresent()).isTrue();
+        assertThat(optional).isPresent();
 
         // ✅ Then
         final UserDomain userDomain = optional.get();

@@ -20,7 +20,7 @@ import org.testcontainers.utility.DockerImageName;
 @Sql(
         scripts = {"/sql/clean_test.sql"},
         executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class SpiJpaApplicationTests {
+public abstract class SpiJpaApplicationTests {
 
     private static final Logger LOG = LoggerFactory.getLogger(SpiJpaApplicationTests.class.getSimpleName());
     private static final Logger DB_LOG = LoggerFactory.getLogger(MySQLContainer.class);

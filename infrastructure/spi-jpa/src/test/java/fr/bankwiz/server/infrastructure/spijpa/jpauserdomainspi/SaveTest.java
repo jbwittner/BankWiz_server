@@ -20,7 +20,6 @@ class SaveTest extends JPAUserDomainSpiTestBase {
         // ✅ Then
         assertThat(savedUserDomain).isEqualTo(userDomain);
         final var optional = jpaUserDomainSpi.findById(savedUserDomain.id());
-        assertThat(optional).isPresent();
-        assertThat(optional.get()).isEqualTo(savedUserDomain);
+        assertThat(optional).isPresent().contains(savedUserDomain);
     }
 }
