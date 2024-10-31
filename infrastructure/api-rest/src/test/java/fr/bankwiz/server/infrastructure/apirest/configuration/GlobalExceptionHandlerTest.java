@@ -40,7 +40,7 @@ class GlobalExceptionHandlerTest extends ApiRestTestsBase {
         final var exceptionDTO = resultCall.result();
         Assertions.assertThat(exceptionDTO.exception()).isEqualTo("TestException");
         Assertions.assertThat(exceptionDTO.message()).isEqualTo("value1 : " + value1 + " / value2 : " + value2);
-        Assertions.assertThat(exceptionDTO.attributes().get("value1")).isEqualTo(value1);
-        Assertions.assertThat(exceptionDTO.attributes().get("value2")).isEqualTo(value2);
+        Assertions.assertThat(exceptionDTO.attributes()).containsEntry("value1", value1);
+        Assertions.assertThat(exceptionDTO.attributes()).containsEntry("value2", value2);
     }
 }
