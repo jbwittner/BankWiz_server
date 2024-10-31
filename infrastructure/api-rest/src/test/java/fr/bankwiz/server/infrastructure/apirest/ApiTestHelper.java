@@ -81,8 +81,8 @@ public class ApiTestHelper {
         }
     }
 
-    public <T> ResultCall<T> getRequest(final String url, final Class<T> T, final String... scopes) {
-        return this.getRequest(url, T, true, scopes);
+    public <T> ResultCall<T> getRequest(final String url, final Class<T> classResult, final String... scopes) {
+        return this.getRequest(url, classResult, true, scopes);
     }
 
     public ResultCall<Void> getRequest(final String url, final String... scopes) {
