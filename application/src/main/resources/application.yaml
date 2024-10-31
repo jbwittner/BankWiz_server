@@ -17,7 +17,14 @@ application:
     audience: audience
 server:
   port: "${application.server.port}"
-logging.level.root: INFO
+logging:
+  level:
+    root: INFO
+    fr.bankwiz.server:
+      domain.service: INFO
+      infrastructure:
+        spijpa: false
+        apirest: INFO
 spring:
   jpa:
     show-sql: false
