@@ -17,4 +17,14 @@ public final class Endpoints {
         public static final String PRIVATE = "private";
         public static final String ADMIN = "admin";
     }
+
+    public static final class User {
+
+        private User() {
+            // Private constructor to prevent instantiation
+        }
+
+        public static final String BASE = "user";
+        public static final String AUTHENTICATE = "authenticate";
+    }
 }
