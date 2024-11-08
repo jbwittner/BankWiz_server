@@ -21,10 +21,11 @@ logging:
   level:
     root: INFO
     fr.bankwiz.server:
+      application.aop: INFO
       domain.service: INFO
       infrastructure:
-        spijpa: false
-        apirest: INFO
+        spijpa: WARN
+        apirest: WARN
 spring:
   jpa:
     show-sql: false
