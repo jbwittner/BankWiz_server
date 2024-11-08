@@ -25,6 +25,10 @@ public class AspectTools {
         final Object proceed = joinPoint.proceed();
         final long executionTime = System.currentTimeMillis() - start;
 
+        if (logger.isDebugEnabled()) {
+            logger.debug("Exiting [{}] with arguments {}", informationCall, proceed);
+        }
+
         logger.info("Exiting [{}] executed in {} ms", informationCall, executionTime);
 
         return proceed;

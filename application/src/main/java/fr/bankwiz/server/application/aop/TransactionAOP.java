@@ -1,5 +1,6 @@
-package fr.bankwiz.server.infrastructure.spijpa.aop;
+package fr.bankwiz.server.application.aop;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -8,8 +9,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Aspect
