@@ -23,7 +23,7 @@ logging:
     fr.bankwiz.server:
       domain.service: INFO
       infrastructure:
-        spijpa: false
+        spijpa: WARN
         apirest: INFO
 spring:
   jpa:

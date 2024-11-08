@@ -25,7 +25,7 @@ public class TransactionAOP {
         definition.setTimeout(10);
     }
 
-    @Around("execution(* fr.bankwiz.server.domain.service.*.*(..))")
+    @Around("@within(fr.bankwiz.server.domain.annotation.DomainService)")
     public Object applyTransaction(final ProceedingJoinPoint pjp) throws Throwable {
         log.debug("Before method execution");
 

@@ -1,5 +1,6 @@
 package fr.bankwiz.server.domain.service;
 
+import fr.bankwiz.server.domain.annotation.DomainService;
 import fr.bankwiz.server.domain.api.UserDomainApi;
 import fr.bankwiz.server.domain.model.data.UserAuthenticationDomain;
 import fr.bankwiz.server.domain.model.data.UserDomain;
@@ -8,6 +9,7 @@ import fr.bankwiz.server.domain.spi.UserDomainSpi;
 import fr.bankwiz.server.domain.tools.UUIDGenerator;
 import lombok.RequiredArgsConstructor;
 
+@DomainService
 @RequiredArgsConstructor
 public class UserDomainService implements UserDomainApi {
 
