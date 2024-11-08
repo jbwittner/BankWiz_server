@@ -13,5 +13,6 @@ services:
       APPLICATION_DB_NAME: bankwiz_db
       APPLICATION_DB_USER: bankwiz_user
       APPLICATION_DB_PASSWORD: Bankwiz2024
+      APPLICATION_CORS_ALLOWED_ORIGINS: http://localhost:5173
       SPRING_JPA_HIBERNATE_DDL_AUTO: validate
       PROFILES: development
