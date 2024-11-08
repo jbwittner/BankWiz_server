@@ -24,7 +24,7 @@ logging:
       domain.service: INFO
       infrastructure:
         spijpa: WARN
-        apirest: INFO
+        apirest: WARN
 spring:
   jpa:
     show-sql: false
