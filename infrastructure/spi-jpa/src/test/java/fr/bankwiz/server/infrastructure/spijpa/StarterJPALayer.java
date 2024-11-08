@@ -8,6 +8,4 @@ public class StarterJPALayer {
     public static void main(final String[] args) {
         SpringApplication.run(StarterJPALayer.class, args);
     }
-
-
 }
