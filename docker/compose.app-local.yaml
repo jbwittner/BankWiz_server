@@ -2,13 +2,13 @@
 services:
   serverapp:
     depends_on:
-      - db
+    - db
     build:
       context: ../
       dockerfile: docker/Dockerfile
     container_name: bankwiz_server
     ports:
-      - 9595:9595
+    - 9595:9595
     environment:
       APPLICATION_DB_HOST: db
       APPLICATION_DB_PORT: 3306
