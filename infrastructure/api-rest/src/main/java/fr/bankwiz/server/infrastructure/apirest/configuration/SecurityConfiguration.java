@@ -20,10 +20,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    @Value("#{'${application.cors-allowed-origins}'.split(',')}")
+    @Value("#{'${application.web.cors-allowed-origins}'.split(',')}")
     private List<String> allowedOrigins;
 
-    @Value("${application.url}")
+    @Value("${application.web.url}")
     private String applicationUrl;
 
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
