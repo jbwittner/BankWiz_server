@@ -2,6 +2,7 @@
 application:
   title: Bankwiz server
   version: 1.0.0-SNAPSHOT
+  description: Api server for Bankwiz application
   url: http://localhost:9595
   cors-allowed-origins: ""
   server:
