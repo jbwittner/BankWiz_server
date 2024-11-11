@@ -1,21 +1,17 @@
 package fr.bankwiz.server.infrastructure.apirest.configuration;
 
-import java.util.ArrayList;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.security.OAuthFlow;
 import io.swagger.v3.oas.annotations.security.OAuthFlows;
 import io.swagger.v3.oas.annotations.security.OAuthScope;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
-import io.swagger.v3.oas.models.Components;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
-import io.swagger.v3.oas.models.servers.Server;
+import io.swagger.v3.oas.annotations.servers.Server;
 
 @Configuration
 @SecurityScheme(
@@ -33,19 +29,16 @@ import io.swagger.v3.oas.models.servers.Server;
                                             @OAuthScope(name = "profile", description = "profile scope"),
                                             @OAuthScope(name = "email", description = "email scope")
                                         })))
-public class OpenApiConfiguration {
-
-    @Bean
-    OpenAPI customOpenAPI(@Value("${application.url}") final String applicationUrl) {
-
-        final ArrayList<Server> servers = new ArrayList<>();
-        servers.add(new Server().url(applicationUrl));
-        return new OpenAPI()
-                .components(new Components())
-                .servers(servers)
-                .info(new Info()
-                        .title("Bankwiz API")
-                        .description("Bankwiz - API Swagger documentation")
-                        .license(new License().name("Apache 2.0").url("http://springdoc.org")));
-    }
-}
+@OpenAPIDefinition(
+        servers = @Server(url = "${application.web.url}"),
+        info =
+                @Info(
+                        title = "${application.general.title}",
+                        version = "${application.general.version}",
+                        description = "${application.general.description}",
+                        license =
+                                @License(
+                                        name = "${application.general.license}",
+                                        url = "${application.general.license-url}"),
+                        contact = @Contact(email = "jeanbaptiste.wittner@outlook.com", name = "WITTNER Jean-Baptiste")))
+public class OpenApiConfiguration {}

@@ -1,11 +1,15 @@
 ---
 application:
-  title: Bankwiz server
-  version: 1.0.0-SNAPSHOT
-  url: http://localhost:9595
-  cors-allowed-origins: ""
-  server:
+  general:
+    title: Bankwiz server
+    version: 1.0.0-SNAPSHOT
+    description: Api server for Bankwiz application
+    license: Mozilla Public License Version 2.0
+    license-url: https://github.com/jbwittner/bankwiz_server/blob/develop/LICENSE
+  web:
     port: 9595
+    url: http://localhost:9595
+    cors-allowed-origins: ""
   db:
     host: dblocalhost
     port: 5432
@@ -16,7 +20,7 @@ application:
     issuer-uri: https://example.com/
     audience: audience
 server:
-  port: "${application.server.port}"
+  port: "${application.web.port}"
 logging:
   level:
     root: INFO
