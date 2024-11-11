@@ -51,7 +51,7 @@ docker-build:
     docker build -t bankwiz-server:local -f docker/Dockerfile .
 
 docker-run-local:
-    docker run -p 9595:9595 bankwiz-server:local
+    docker compose -f docker/compose.yaml -f docker/compose.app-local.yaml up -d
 
 start:
     docker compose -f docker/compose.yaml up -d
