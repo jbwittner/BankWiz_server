@@ -41,12 +41,7 @@ public class SecurityConfiguration {
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(
-                                "/status/public",
-                                "/v3/api-docs/*",
-                                "v3/api-docs",
-                                "/swagger-ui/*",
-                                "/v3/api-docs.yaml",
-                                "/actuator/**")
+                                "/status/public", "/v3/api-docs/*", "v3/api-docs", "/v3/api-docs.yaml", "/actuator/**")
                         .permitAll()
                         .requestMatchers("/status/admin")
                         .hasAuthority("SCOPE_admin:configuration")
