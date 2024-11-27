@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 
 import fr.bankwiz.server.infrastructure.apirest.ApiRestTestsBase;
 
-public class OpenApiConfigurationTest extends ApiRestTestsBase {
+class OpenApiConfigurationTest extends ApiRestTestsBase {
 
     @ParameterizedTest
     @ValueSource(
