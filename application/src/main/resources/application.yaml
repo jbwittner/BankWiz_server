@@ -30,6 +30,9 @@ logging:
       infrastructure:
         spijpa: WARN
         apirest: WARN
+springdoc:
+  api-docs:
+    enabled: true
 spring:
   jpa:
     show-sql: false
