@@ -42,10 +42,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(
                                 "/status/public",
-                                "/v3/api-docs/*",
-                                "v3/api-docs",
-                                "/swagger-ui/*",
+                                "/v3/api-docs/**",
                                 "/v3/api-docs.yaml",
+                                "/swagger-ui/**",
                                 "/actuator/**")
                         .permitAll()
                         .requestMatchers("/status/admin")
