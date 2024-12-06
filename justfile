@@ -39,7 +39,7 @@ backup-data:
     docker exec -i {{DB_CONTAINER_NAME}} sh -c "pg_dump --data-only -U {{DB_USER}} -d {{DB_DATABASE}}" > sql/data.sql
 
 restore:
-    just restore-system && just restore-table && just restore-data
+    just restore-table && just restore-data
 
 backup:
     just backup-table && just backup-data
