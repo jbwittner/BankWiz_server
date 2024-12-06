@@ -25,8 +25,11 @@ public abstract class SpiJpaApplicationTests {
     private static final Logger LOG = LoggerFactory.getLogger(SpiJpaApplicationTests.class.getSimpleName());
     private static final Logger DB_LOG = LoggerFactory.getLogger(PostgreSQLContainer.class);
 
-    private static final PostgreSQLContainer<?> dbContainer =
-            new PostgreSQLContainer<>(DockerImageName.parse("pgvector/pgvector:pg17")).withLogConsumer(new Slf4jLogConsumer(DB_LOG)).withUsername("bankwiz_user").withPassword("root");
+    private static final PostgreSQLContainer<?> dbContainer = new PostgreSQLContainer<>(
+                    DockerImageName.parse("pgvector/pgvector:pg17"))
+            .withLogConsumer(new Slf4jLogConsumer(DB_LOG))
+            .withUsername("bankwiz_user")
+            .withPassword("root");
 
     static {
         dbContainer.withInitScript("sql/init_table.sql");
