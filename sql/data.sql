@@ -17,25 +17,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-SET default_tablespace = '';
-
-SET default_table_access_method = heap;
-
---
--- Name: user_accounts; Type: TABLE; Schema: public; Owner: bankwiz_user
---
-
-CREATE TABLE public.user_accounts (
-    user_id uuid NOT NULL,
-    auth_id character varying(255) NOT NULL,
-    email character varying(255) NOT NULL,
-    full_name character varying(255) NOT NULL,
-    nick_name character varying(255) NOT NULL
-);
-
-
-ALTER TABLE public.user_accounts OWNER TO bankwiz_user;
-
 --
 -- Data for Name: user_accounts; Type: TABLE DATA; Schema: public; Owner: bankwiz_user
 --
@@ -43,14 +24,6 @@ ALTER TABLE public.user_accounts OWNER TO bankwiz_user;
 COPY public.user_accounts (user_id, auth_id, email, full_name, nick_name) FROM stdin;
 27de2b0a-b3d2-11ef-b2c4-7f49e866ec08	google-oauth2|105604612464063462418	jeanbaptiste.wittner@gmail.com	Jean-Baptiste Wittner	jeanbaptiste.wittner
 \.
-
-
---
--- Name: user_accounts user_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: bankwiz_user
---
-
-ALTER TABLE ONLY public.user_accounts
-    ADD CONSTRAINT user_accounts_pkey PRIMARY KEY (user_id);
 
 
 --
