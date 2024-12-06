@@ -3,7 +3,7 @@ application:
   cors-allowed-origins: http://localhost:5173
   db:
     host: localhost
-    port: 3306
+    port: 5432
     name: bankwiz_db
     user: bankwiz_user
     password: Bankwiz2024
