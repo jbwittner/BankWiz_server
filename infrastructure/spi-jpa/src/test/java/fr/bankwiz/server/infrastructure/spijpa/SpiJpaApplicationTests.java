@@ -9,7 +9,7 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlMergeMode;
-import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
 import org.testcontainers.utility.DockerImageName;
 
@@ -23,10 +23,10 @@ import org.testcontainers.utility.DockerImageName;
 public abstract class SpiJpaApplicationTests {
 
     private static final Logger LOG = LoggerFactory.getLogger(SpiJpaApplicationTests.class.getSimpleName());
-    private static final Logger DB_LOG = LoggerFactory.getLogger(MySQLContainer.class);
+    private static final Logger DB_LOG = LoggerFactory.getLogger(PostgreSQLContainer.class);
 
-    private static final MySQLContainer<?> dbContainer =
-            new MySQLContainer<>(DockerImageName.parse("mysql:9.0.0")).withLogConsumer(new Slf4jLogConsumer(DB_LOG));
+    private static final PostgreSQLContainer<?> dbContainer =
+            new PostgreSQLContainer<>(DockerImageName.parse("pgvector/pgvector:pg17")).withLogConsumer(new Slf4jLogConsumer(DB_LOG)).withUsername("bankwiz_user").withPassword("root");
 
     static {
         dbContainer.withInitScript("sql/init_table.sql");

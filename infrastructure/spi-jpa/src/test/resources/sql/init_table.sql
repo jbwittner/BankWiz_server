@@ -17,8 +17,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-ALTER TABLE ONLY public.user_accounts DROP CONSTRAINT user_accounts_pkey;
-DROP TABLE public.user_accounts;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
