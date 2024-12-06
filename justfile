@@ -28,6 +28,9 @@ start-jar-dev:
 restore-system:
     docker exec -i {{DB_CONTAINER_NAME}} sh -c 'exec mysql -uroot -p"{{DB_ROOT_PASSWORD}}"' < sql/prepare.sql
 
+testdb:
+    docker exec {{DB_CONTAINER_NAME}} sh -c "pg_dump -U {{DB_USER}} -d {{DB_DATABASE}}" > sql/database.sql
+
 restore-table:
     docker exec -i {{DB_CONTAINER_NAME}} sh -c 'exec mysql -uroot -p"{{DB_ROOT_PASSWORD}}" {{DB_DATABASE}}' < sql/database.sql
 
@@ -35,11 +38,11 @@ restore-data:
     docker exec -i {{DB_CONTAINER_NAME}} sh -c 'exec mysql -uroot -p"{{DB_ROOT_PASSWORD}}" {{DB_DATABASE}}' < sql/data.sql
 
 backup-table:
-    docker exec {{DB_CONTAINER_NAME}} sh -c 'exec mysqldump --no-data -uroot -p"{{DB_ROOT_PASSWORD}}" --single-transaction {{DB_DATABASE}}' > sql/database.sql
-    docker exec {{DB_CONTAINER_NAME}} sh -c 'exec mysqldump --no-data -uroot -p"{{DB_ROOT_PASSWORD}}" --single-transaction {{DB_DATABASE}}' > infrastructure/spi-jpa/src/test/resources/sql/init_table.sql
+    docker exec {{DB_CONTAINER_NAME}} sh -c "pg_dump --clean --schema-only -U {{DB_USER}} -d {{DB_DATABASE}}" > sql/database.sql
+    docker exec {{DB_CONTAINER_NAME}} sh -c "pg_dump --clean --schema-only -U {{DB_USER}} -d {{DB_DATABASE}}" > infrastructure/spi-jpa/src/test/resources/sql/init_table.sql
 
 backup-data:
-    docker exec {{DB_CONTAINER_NAME}} sh -c 'exec mysqldump --no-create-info -uroot -p"{{DB_ROOT_PASSWORD}}" {{DB_DATABASE}}' > sql/data.sql
+    docker exec {{DB_CONTAINER_NAME}} sh -c "pg_dump -data-only -U {{DB_USER}} -d {{DB_DATABASE}}" > sql/data.sql
 
 restore:
     just restore-system && just restore-table && just restore-data
