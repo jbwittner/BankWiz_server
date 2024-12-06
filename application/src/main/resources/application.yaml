@@ -34,14 +34,13 @@ spring:
   jpa:
     show-sql: false
     open-in-view: false
-    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: validate
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
   datasource:
-    url: "jdbc:mysql://${application.db.host}:${application.db.port}/${application.db.name}"
+    url: "jdbc:postgresql://${application.db.host}:${application.db.port}/${application.db.name}"
     username: "${application.db.user}"
     password: "${application.db.password}"
   security:

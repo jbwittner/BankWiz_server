@@ -2,9 +2,6 @@ package fr.bankwiz.server.infrastructure.spijpa.spi.database.entity;
 
 import java.util.UUID;
 
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -21,8 +18,7 @@ import lombok.*;
 public class UserEntity {
 
     @Id
-    @Column(name = "USER_ID", nullable = false, updatable = false, insertable = false, columnDefinition = "VARCHAR(36)")
-    @JdbcTypeCode(SqlTypes.VARCHAR)
+    @Column(name = "USER_ID", nullable = false, updatable = false, insertable = false)
     private UUID id;
 
     @Column(name = "AUTH_ID", nullable = false)

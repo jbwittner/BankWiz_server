@@ -1,44 +1,50 @@
--- MySQL dump 10.13  Distrib 9.0.0, for Linux (x86_64)
 --
--- Host: localhost    Database: bankwiz_db
--- ------------------------------------------------------
--- Server version	9.0.0
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `USER_ACCOUNTS`
+-- PostgreSQL database dump
 --
 
-DROP TABLE IF EXISTS `USER_ACCOUNTS`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `USER_ACCOUNTS` (
-  `USER_ID` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `AUTH_ID` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `EMAIL` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `FULL_NAME` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `NICK_NAME` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`USER_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+-- Dumped from database version 17.2 (Debian 17.2-1.pgdg120+1)
+-- Dumped by pg_dump version 17.2 (Debian 17.2-1.pgdg120+1)
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
 
--- Dump completed on 2024-10-31 21:00:27
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: user_accounts; Type: TABLE; Schema: public; Owner: bankwiz_user
+--
+
+CREATE TABLE public.user_accounts (
+    user_id uuid NOT NULL,
+    auth_id character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    full_name character varying(255) NOT NULL,
+    nick_name character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.user_accounts OWNER TO bankwiz_user;
+
+--
+-- Name: user_accounts user_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: bankwiz_user
+--
+
+ALTER TABLE ONLY public.user_accounts
+    ADD CONSTRAINT user_accounts_pkey PRIMARY KEY (user_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
