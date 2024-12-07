@@ -1,6 +1,7 @@
 ---
 application:
-  cors-allowed-origins: http://localhost:5173
+  web:
+    cors-allowed-origins: https://app.dev.bankwiz.net, http://localhost:5173
   db:
     host: localhost
     port: 54322
