@@ -146,7 +146,7 @@ jobs:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
   deploy_kube_dev:
     runs-on: ubuntu-22.04
-    name: Push maven package
+    name: Deploy to Kubernetes
     needs:
     - push_maven
     - build_push_docker
@@ -156,5 +156,5 @@ jobs:
       env:
         KUBE_CONFIG: "${{ secrets.KUBE_CONFIG }}"
       with:
-        args: set image deployment/bankwiz-deployment bankwiz-server-container=ghcr.io/jbwittner/bankwiz_server:develop-latest
-          -n bankwiz-dev
+        args: "set image deployment/bankwiz-deployment bankwiz-server-container=ghcr.io/jbwittner/bankwiz_server:develop-${{\
+          \ github.sha }} -n bankwiz-dev"
