@@ -144,3 +144,17 @@ jobs:
       run: mvn -B deploy -DskipTests
       env:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+  deploy_kube_dev:
+    runs-on: ubuntu-22.04
+    name: Push maven package
+    needs:
+    - push_maven
+    - build_push_docker
+    steps:
+    - name: Trigger Kubernetes Deployment
+      uses: actions-hub/kubectl@master
+      env:
+        KUBE_CONFIG: "${{ secrets.KUBE_CONFIG }}"
+      with:
+        args: set image deployment/bankwiz-deployment bankwiz-server-container=ghcr.io/jbwittner/bankwiz_server:develop-latest
+          -n bankwiz-dev
