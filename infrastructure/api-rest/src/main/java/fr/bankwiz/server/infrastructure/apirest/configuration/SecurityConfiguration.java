@@ -3,6 +3,7 @@ package fr.bankwiz.server.infrastructure.apirest.configuration;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +21,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    @Value("#{'${application.web.cors-allowed-origins}'.split(',')}")
-    private List<String> allowedOrigins;
+    @Autowired
+    private WebProperties webProperties;
 
     @Value("${application.web.url}")
     private String applicationUrl;
@@ -60,8 +61,7 @@ public class SecurityConfiguration {
     @Primary
     CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();
-        final List<String> allowedOriginList = new ArrayList<>();
-        allowedOriginList.addAll(allowedOrigins);
+        final List<String> allowedOriginList = new ArrayList<>(webProperties.getCorsAllowedOrigins());
         allowedOriginList.add(applicationUrl);
         configuration.setAllowedOrigins(allowedOriginList);
         configuration.setAllowedMethods(List.of("*"));
