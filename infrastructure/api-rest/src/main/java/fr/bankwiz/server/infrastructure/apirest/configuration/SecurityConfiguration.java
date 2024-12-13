@@ -58,7 +58,6 @@ public class SecurityConfiguration {
     @Primary
     CorsConfigurationSource corsConfigurationSource(final WebProperties webProperties) {
 
-
         final CorsConfiguration configuration = new CorsConfiguration();
         final List<String> allowedOriginList = new ArrayList<>(webProperties.getCorsAllowedOrigins());
         allowedOriginList.add(applicationUrl);
