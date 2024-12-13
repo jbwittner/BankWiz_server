@@ -3,7 +3,6 @@ package fr.bankwiz.server.infrastructure.apirest.configuration;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,9 +20,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    @Autowired
-    private WebProperties webProperties;
-
     @Value("${application.web.url}")
     private String applicationUrl;
 
@@ -38,8 +34,9 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
-        http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
+    public SecurityFilterChain filterChain(final HttpSecurity http, final WebProperties webProperties)
+            throws Exception {
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource(webProperties)))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(
                                 "/status/public",
@@ -59,7 +56,9 @@ public class SecurityConfiguration {
 
     @Bean
     @Primary
-    CorsConfigurationSource corsConfigurationSource() {
+    CorsConfigurationSource corsConfigurationSource(final WebProperties webProperties) {
+
+
         final CorsConfiguration configuration = new CorsConfiguration();
         final List<String> allowedOriginList = new ArrayList<>(webProperties.getCorsAllowedOrigins());
         allowedOriginList.add(applicationUrl);
