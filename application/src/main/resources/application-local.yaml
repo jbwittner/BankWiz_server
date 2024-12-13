@@ -1,7 +1,10 @@
 ---
 application:
   web:
-    cors-allowed-origins: http://localhost:5173
+    cors-allowed-origins:
+      - https://app.dev.bankwiz.bytedragon.tech
+      - http://localhost:5173
+      - http://localhost:58351
   db:
     host: localhost
     port: 5432
