@@ -36,6 +36,8 @@ public class SecurityConfiguration {
 
         if(webProperties.isEnableCors()){
             http.cors(cors -> cors.configurationSource(corsConfigurationSource(webProperties)));
+        } else {
+            http.cors(cors -> cors.disable());
         }
 
         http.authorizeHttpRequests(authorize -> authorize
