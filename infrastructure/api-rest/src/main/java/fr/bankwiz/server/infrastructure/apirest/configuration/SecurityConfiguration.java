@@ -3,7 +3,6 @@ package fr.bankwiz.server.infrastructure.apirest.configuration;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -20,9 +19,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    @Value("${application.web.url}")
-    private String applicationUrl;
-
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
         final JwtGrantedAuthoritiesConverter converter = new JwtGrantedAuthoritiesConverter();
         converter.setAuthoritiesClaimName("permissions");
@@ -36,8 +32,14 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(final HttpSecurity http, final WebProperties webProperties)
             throws Exception {
-        http.cors(cors -> cors.configurationSource(corsConfigurationSource(webProperties)))
-                .authorizeHttpRequests(authorize -> authorize
+
+        if (webProperties.isEnableCors()) {
+            http.cors(cors -> cors.configurationSource(corsConfigurationSource(webProperties)));
+        } else {
+            http.cors(cors -> cors.disable());
+        }
+
+        http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(
                                 "/status/public",
                                 "/v3/api-docs/**",
@@ -60,7 +62,6 @@ public class SecurityConfiguration {
 
         final CorsConfiguration configuration = new CorsConfiguration();
         final List<String> allowedOriginList = new ArrayList<>(webProperties.getCorsAllowedOrigins());
-        allowedOriginList.add(applicationUrl);
         configuration.setAllowedOrigins(allowedOriginList);
         configuration.setAllowedMethods(List.of("*"));
         configuration.setAllowedHeaders(List.of("*"));

@@ -14,4 +14,5 @@ import lombok.Setter;
 @ConfigurationProperties(prefix = "application.web")
 public class WebProperties {
     private List<String> corsAllowedOrigins;
+    private boolean enableCors;
 }
