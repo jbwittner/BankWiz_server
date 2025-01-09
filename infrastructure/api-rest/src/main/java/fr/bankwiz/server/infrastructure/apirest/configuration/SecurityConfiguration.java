@@ -3,7 +3,6 @@ package fr.bankwiz.server.infrastructure.apirest.configuration;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -34,7 +33,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(final HttpSecurity http, final WebProperties webProperties)
             throws Exception {
 
-        if(webProperties.isEnableCors()){
+        if (webProperties.isEnableCors()) {
             http.cors(cors -> cors.configurationSource(corsConfigurationSource(webProperties)));
         } else {
             http.cors(cors -> cors.disable());
