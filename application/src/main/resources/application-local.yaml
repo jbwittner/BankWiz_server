@@ -1,6 +1,7 @@
 ---
 application:
   web:
+    enable-cors: true
     cors-allowed-origins:
     - https://app.dev.bankwiz.bytedragon.tech
     - http://localhost:5173
