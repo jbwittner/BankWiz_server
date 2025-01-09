@@ -3,21 +3,21 @@ package fr.bankwiz.server.domain.service.bankaccountservice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
-import fr.bankwiz.server.domain.mockhelper.MockAuthenticationSpi;
-import fr.bankwiz.server.domain.mockhelper.MockUserDomainSpi;
-import fr.bankwiz.server.domain.service.UserDomainService;
+import fr.bankwiz.server.domain.mockhelper.MockBankAccountDomainSpi;
+import fr.bankwiz.server.domain.mockhelper.MockCurrencyDomainSpi;
+import fr.bankwiz.server.domain.service.BankAccountService;
 
-@DisplayName("UserDomainService Test Base")
+@DisplayName("BankAccountService Test Base")
 class BankAccountDomainServiceTestBase {
 
-    protected MockUserDomainSpi mockUserDomainSpi = new MockUserDomainSpi();
-    protected MockAuthenticationSpi mockAuthenticationSpi = new MockAuthenticationSpi();
-    protected UserDomainService userDomainService =
-            new UserDomainService(mockAuthenticationSpi.getMock(), mockUserDomainSpi.getMock());
+    protected MockBankAccountDomainSpi mockBankAccountDomainSpi = new MockBankAccountDomainSpi();
+    protected MockCurrencyDomainSpi mockCurrencyDomainSpi = new MockCurrencyDomainSpi();
+    protected BankAccountService bankAccountService =
+            new BankAccountService(mockBankAccountDomainSpi.getMock(), mockCurrencyDomainSpi.getMock());
 
     @BeforeEach
     public void setUp() {
-        mockAuthenticationSpi.resetMock();
-        mockUserDomainSpi.resetMock();
+        mockBankAccountDomainSpi.resetMock();
+        mockCurrencyDomainSpi.resetMock();
     }
 }

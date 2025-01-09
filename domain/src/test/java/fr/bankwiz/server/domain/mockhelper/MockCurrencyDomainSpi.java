@@ -12,7 +12,7 @@ public class MockCurrencyDomainSpi extends MockHelper<CurrencyDomainSpi> {
         super(CurrencyDomainSpi.class);
     }
 
-    void mockFindByIsoCode(String isoCode, Optional<CurrencyDomain> optional) {
+    public void mockFindByIsoCode(String isoCode, Optional<CurrencyDomain> optional) {
         Mockito.when(this.mock.findByIsoCode(isoCode)).thenReturn(optional);
     }
 }
