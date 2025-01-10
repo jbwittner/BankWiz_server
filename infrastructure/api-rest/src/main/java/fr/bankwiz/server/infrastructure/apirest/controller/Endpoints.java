@@ -27,4 +27,13 @@ public final class Endpoints {
         public static final String BASE = "user";
         public static final String AUTHENTICATE = "authenticate";
     }
+
+    public static final class BankAccount {
+
+        private BankAccount() {
+            // Private constructor to prevent instantiation
+        }
+
+        public static final String BASE = "bank-account";
+    }
 }
