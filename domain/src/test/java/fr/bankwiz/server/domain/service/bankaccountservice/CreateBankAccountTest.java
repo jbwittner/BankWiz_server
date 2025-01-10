@@ -2,7 +2,6 @@ package fr.bankwiz.server.domain.service.bankaccountservice;
 
 import java.util.Optional;
 
-import fr.bankwiz.server.domain.model.data.UserDomain;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,6 +10,7 @@ import fr.bankwiz.server.domain.FactoryHelper;
 import fr.bankwiz.server.domain.exception.DataModelNotFound;
 import fr.bankwiz.server.domain.model.data.BankAccountDomain;
 import fr.bankwiz.server.domain.model.data.CurrencyDomain;
+import fr.bankwiz.server.domain.model.data.UserDomain;
 import fr.bankwiz.server.domain.model.request.BankAccountCreationRequest;
 
 import static org.instancio.Select.field;

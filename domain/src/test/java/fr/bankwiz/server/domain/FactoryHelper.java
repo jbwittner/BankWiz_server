@@ -5,6 +5,8 @@ import org.instancio.Instancio;
 import fr.bankwiz.server.domain.model.data.CurrencyDomain;
 import fr.bankwiz.server.domain.model.data.UserDomain;
 
+import static org.instancio.Select.field;
+
 public class FactoryHelper {
 
     private FactoryHelper() {
@@ -16,6 +18,6 @@ public class FactoryHelper {
     }
 
     public static CurrencyDomain createCurrencyDomain() {
-        return Instancio.create(CurrencyDomain.class);
+        return Instancio.of(CurrencyDomain.class).generate(field("isoCode"), gen -> gen.text().pattern("[A-Z]{3}")).create();
     }
 }
