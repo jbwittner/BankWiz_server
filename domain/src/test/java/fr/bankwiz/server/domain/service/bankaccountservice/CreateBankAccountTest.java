@@ -2,6 +2,7 @@ package fr.bankwiz.server.domain.service.bankaccountservice;
 
 import java.util.Optional;
 
+import fr.bankwiz.server.domain.model.data.UserDomain;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,8 +24,10 @@ public class CreateBankAccountTest extends BankAccountDomainServiceTestBase {
         final BankAccountCreationRequest request = Instancio.of(BankAccountCreationRequest.class)
                 .set(field(BankAccountCreationRequest::isoCurrencyCode), currency.isoCode())
                 .create();
+        final UserDomain user = FactoryHelper.createUserDomain();
 
         this.mockCurrencyDomainSpi.mockFindByIsoCode(currency.isoCode(), Optional.of(currency));
+        this.mockAuthenticationSpi.mockGetCurrentUser(user);
         this.mockBankAccountDomainSpi.mockSave();
 
         // When

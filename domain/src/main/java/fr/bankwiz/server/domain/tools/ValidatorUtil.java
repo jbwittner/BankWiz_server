@@ -23,6 +23,7 @@ public class ValidatorUtil {
 
     public static <T> void validate(T object) {
         Set<ConstraintViolation<T>> violations = validator.validate(object);
+        System.out.println(violations);
         if (!violations.isEmpty()) {
             throw new ValidationException(violations);
         }

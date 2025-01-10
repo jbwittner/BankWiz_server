@@ -1,5 +1,6 @@
 package fr.bankwiz.server.domain.mockhelper;
 
+import fr.bankwiz.server.domain.model.data.UserDomain;
 import org.mockito.Mockito;
 
 import fr.bankwiz.server.domain.model.data.UserAuthenticationDomain;
@@ -13,5 +14,9 @@ public class MockAuthenticationSpi extends MockHelper<AuthenticationSpi> {
 
     public void mockGetCurrentUserAuthentication(final UserAuthenticationDomain userAuthenticationDomain) {
         Mockito.when(mock.getCurrentUserAuthentication()).thenReturn(userAuthenticationDomain);
+    }
+
+    public void mockGetCurrentUser(final UserDomain user) {
+        Mockito.when(mock.getCurrentUser()).thenReturn(user);
     }
 }
