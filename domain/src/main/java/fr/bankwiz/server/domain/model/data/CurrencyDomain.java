@@ -4,4 +4,4 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record CurrencyDomain(
-        @NotBlank String isoCode, @NotBlank String name, @NotBlank String symbol, @NotNull int decimalDigits) {}
+        @NotNull int numericCode, @NotBlank String isoCode, @NotBlank String name, @NotBlank String symbol, @NotNull int decimalDigits) {}

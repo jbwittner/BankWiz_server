@@ -1,6 +1,9 @@
 package fr.bankwiz.server.application.spi;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
@@ -29,6 +32,7 @@ public class CurrencyDomainSpiImpl implements CurrencyDomainSpi {
 
     public static CurrencyDomain convertCurrency(Currency currency) {
         return new CurrencyDomain(
+                currency.getNumericCode(),
                 currency.getCurrencyCode(),
                 currency.getDisplayName(),
                 currency.getSymbol(),
@@ -47,11 +51,19 @@ public class CurrencyDomainSpiImpl implements CurrencyDomainSpi {
                     toret.add(currency);
                 }
             } catch (Exception exc) {
-                throw new RuntimeException(exc);
+                //throw new RuntimeException(exc);
                 // Locale not found
             }
         }
 
+        List<Currency> uniqueCurrencies = toret.stream()
+                .filter(distinctByKey(CurrencyDomain::isoCode))
+                .toList();
+
         return toret;
+    }
+    public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+        Set<Object> seen = ConcurrentHashMap.newKeySet();
+        return t -> seen.add(keyExtractor.apply(t));
     }
 }
