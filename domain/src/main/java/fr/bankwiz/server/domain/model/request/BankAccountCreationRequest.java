@@ -7,5 +7,5 @@ import jakarta.validation.constraints.Size;
 
 public record BankAccountCreationRequest(
         @NotBlank String accountName,
-        @NotBlank @Pattern(regexp = "[A-Z]{3}") String isoCurrencyCode,
+        @NotBlank String isoCurrencyCode,
         @NotNull Integer initialDecimalBalance) {}

@@ -1,6 +1,7 @@
 package fr.bankwiz.server.domain.service;
 
 import fr.bankwiz.server.domain.annotation.DomainService;
+import fr.bankwiz.server.domain.api.BankAccountDomainApi;
 import fr.bankwiz.server.domain.exception.DataModelNotFound;
 import fr.bankwiz.server.domain.model.data.BankAccountDomain;
 import fr.bankwiz.server.domain.model.data.CurrencyDomain;
@@ -15,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 @DomainService
 @RequiredArgsConstructor
-public class BankAccountService {
+public class BankAccountService implements BankAccountDomainApi {
     private final AuthenticationSpi authenticationSpi;
     private final BankAccountDomainSpi bankAccountDomainSpi;
     private final CurrencyDomainSpi currencyDomainSpi;

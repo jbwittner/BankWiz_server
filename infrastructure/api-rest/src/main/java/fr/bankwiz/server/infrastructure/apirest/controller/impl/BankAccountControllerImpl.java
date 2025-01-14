@@ -1,5 +1,7 @@
 package fr.bankwiz.server.infrastructure.apirest.controller.impl;
 
+import fr.bankwiz.server.domain.api.BankAccountDomainApi;
+import fr.bankwiz.server.domain.spi.BankAccountDomainSpi;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,12 +14,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class BankAccountControllerImpl implements BankAccountController {
 
-    private final BankAccountService bankAccountService;
+    private final BankAccountDomainApi bankAccountDomainApi;
 
     @Override
     public ResponseEntity<Void> getPublicStatus() {
         BankAccountCreationRequest bankAccountCreationRequest = new BankAccountCreationRequest("toto", "EURs", 1000);
-        bankAccountService.createBankAccount(bankAccountCreationRequest);
+        bankAccountDomainApi.createBankAccount(bankAccountCreationRequest);
         return null;
     }
 }
