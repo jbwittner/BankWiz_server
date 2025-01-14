@@ -18,6 +18,8 @@ public class FactoryHelper {
     }
 
     public static CurrencyDomain createCurrencyDomain() {
-        return Instancio.of(CurrencyDomain.class).generate(field("isoCode"), gen -> gen.text().pattern("[A-Z]{3}")).create();
+        return Instancio.of(CurrencyDomain.class)
+                .generate(field("isoCode"), gen -> gen.text().pattern("[A-Z]{3}"))
+                .create();
     }
 }
