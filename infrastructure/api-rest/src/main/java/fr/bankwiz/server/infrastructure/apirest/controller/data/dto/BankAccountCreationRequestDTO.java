@@ -6,8 +6,4 @@ import lombok.Builder;
 
 @Builder
 public record BankAccountCreationRequestDTO(
-        @NotBlank String accountName,
-        @NotBlank String isoCurrencyCode,
-        @NotNull Integer initialDecimalBalance
-) {
-}
+        @NotBlank String accountName, @NotBlank String isoCurrencyCode, @NotNull Integer initialDecimalBalance) {}

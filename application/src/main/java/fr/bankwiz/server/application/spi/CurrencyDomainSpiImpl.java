@@ -1,10 +1,11 @@
 package fr.bankwiz.server.application.spi;
 
-import fr.bankwiz.server.domain.model.data.CurrencyDomain;
-import fr.bankwiz.server.domain.spi.CurrencyDomainSpi;
+import java.util.*;
+
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import fr.bankwiz.server.domain.model.data.CurrencyDomain;
+import fr.bankwiz.server.domain.spi.CurrencyDomainSpi;
 
 @Component
 public class CurrencyDomainSpiImpl implements CurrencyDomainSpi {
@@ -14,7 +15,6 @@ public class CurrencyDomainSpiImpl implements CurrencyDomainSpi {
         List<Currency> currencies = CurrencyDomainSpiImpl.getAllCurrencies();
         return currencies.stream().map(CurrencyDomainSpiImpl::convertCurrency).toList();
     }
-
 
     @Override
     public Optional<CurrencyDomain> findByIsoCode(String isoCode) {
@@ -27,24 +27,26 @@ public class CurrencyDomainSpiImpl implements CurrencyDomainSpi {
         }
     }
 
-    public static CurrencyDomain convertCurrency(Currency currency){
-        return new CurrencyDomain(currency.getCurrencyCode(), currency.getDisplayName(), currency.getSymbol(), currency.getDefaultFractionDigits());
+    public static CurrencyDomain convertCurrency(Currency currency) {
+        return new CurrencyDomain(
+                currency.getCurrencyCode(),
+                currency.getDisplayName(),
+                currency.getSymbol(),
+                currency.getDefaultFractionDigits());
     }
 
-    public static List<Currency> getAllCurrencies()
-    {
+    public static List<Currency> getAllCurrencies() {
         List<Currency> toret = new ArrayList<>();
         Locale[] locs = Locale.getAvailableLocales();
 
-        for(Locale loc : locs) {
+        for (Locale loc : locs) {
             try {
-                Currency currency = Currency.getInstance( loc );
+                Currency currency = Currency.getInstance(loc);
 
-                if ( currency != null ) {
-                    toret.add( currency );
+                if (currency != null) {
+                    toret.add(currency);
                 }
-            } catch(Exception exc)
-            {
+            } catch (Exception exc) {
                 throw new RuntimeException(exc);
                 // Locale not found
             }
@@ -52,6 +54,4 @@ public class CurrencyDomainSpiImpl implements CurrencyDomainSpi {
 
         return toret;
     }
-
-
 }
