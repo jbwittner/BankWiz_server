@@ -4,9 +4,6 @@ import fr.bankwiz.server.domain.model.data.CurrencyDomain;
 import fr.bankwiz.server.domain.spi.CurrencyDomainSpi;
 import org.springframework.stereotype.Component;
 
-import javax.money.CurrencyQuery;
-import javax.money.CurrencyUnit;
-import javax.money.Monetary;
 import java.util.*;
 
 @Component
