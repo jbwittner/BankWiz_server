@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 @DomainService
 @RequiredArgsConstructor
-public class BankAccountService implements BankAccountDomainApi {
+public class BankAccountDomainService implements BankAccountDomainApi {
     private final AuthenticationSpi authenticationSpi;
     private final BankAccountDomainSpi bankAccountDomainSpi;
     private final CurrencyDomainSpi currencyDomainSpi;

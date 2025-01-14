@@ -31,7 +31,7 @@ public class CreateBankAccountTest extends BankAccountDomainServiceTestBase {
         this.mockBankAccountDomainSpi.mockSave();
 
         // When
-        final BankAccountDomain result = this.bankAccountService.createBankAccount(request);
+        final BankAccountDomain result = this.bankAccountDomainService.createBankAccount(request);
 
         // Then
         this.mockBankAccountDomainSpi.verifySave(result);
@@ -51,7 +51,7 @@ public class CreateBankAccountTest extends BankAccountDomainServiceTestBase {
 
         // When
         final var exception = Assertions.assertThrows(
-                DataModelNotFound.class, () -> this.bankAccountService.createBankAccount(request));
+                DataModelNotFound.class, () -> this.bankAccountDomainService.createBankAccount(request));
 
         // Then
         this.mockBankAccountDomainSpi.verifySaveNotCalled();

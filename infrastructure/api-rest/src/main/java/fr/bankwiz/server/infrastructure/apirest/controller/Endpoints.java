@@ -36,4 +36,12 @@ public final class Endpoints {
 
         public static final String BASE = "bank-account";
     }
+
+    public static final class Currency {
+        private Currency() {
+            // Private constructor to prevent instantiation
+        }
+
+        public static final String BASE = "currency";
+    }
 }

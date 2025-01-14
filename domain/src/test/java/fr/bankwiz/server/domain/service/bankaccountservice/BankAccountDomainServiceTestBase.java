@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import fr.bankwiz.server.domain.mockhelper.MockAuthenticationSpi;
 import fr.bankwiz.server.domain.mockhelper.MockBankAccountDomainSpi;
 import fr.bankwiz.server.domain.mockhelper.MockCurrencyDomainSpi;
-import fr.bankwiz.server.domain.service.BankAccountService;
+import fr.bankwiz.server.domain.service.BankAccountDomainService;
 
 @DisplayName("BankAccountService Test Base")
 class BankAccountDomainServiceTestBase {
@@ -14,7 +14,7 @@ class BankAccountDomainServiceTestBase {
     protected MockAuthenticationSpi mockAuthenticationSpi = new MockAuthenticationSpi();
     protected MockBankAccountDomainSpi mockBankAccountDomainSpi = new MockBankAccountDomainSpi();
     protected MockCurrencyDomainSpi mockCurrencyDomainSpi = new MockCurrencyDomainSpi();
-    protected BankAccountService bankAccountService = new BankAccountService(
+    protected BankAccountDomainService bankAccountDomainService = new BankAccountDomainService(
             mockAuthenticationSpi.getMock(), mockBankAccountDomainSpi.getMock(), mockCurrencyDomainSpi.getMock());
 
     @BeforeEach
