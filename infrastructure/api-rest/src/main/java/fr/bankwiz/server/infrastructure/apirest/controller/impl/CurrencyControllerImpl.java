@@ -1,15 +1,16 @@
 package fr.bankwiz.server.infrastructure.apirest.controller.impl;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+
 import fr.bankwiz.server.domain.api.CurrencyDomainApi;
 import fr.bankwiz.server.infrastructure.apirest.controller.CurrencyController;
 import fr.bankwiz.server.infrastructure.apirest.controller.data.dto.CurrencyDTO;
 import fr.bankwiz.server.infrastructure.apirest.controller.data.mapper.RestCurrencyMapper;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @AllArgsConstructor
