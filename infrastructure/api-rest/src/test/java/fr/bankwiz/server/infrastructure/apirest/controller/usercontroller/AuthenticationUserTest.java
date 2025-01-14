@@ -38,7 +38,7 @@ class AuthenticationUserTest extends UserControllerTestBase {
         // ✅ Then
         Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.OK);
 
-        final UserDTO expectedUserDTO = this.restUserDomainMapper.toDTO(userDomain);
+        final UserDTO expectedUserDTO = this.restUserMapper.toUserDTO(userDomain);
         Assertions.assertThat(resultCall.result()).isEqualTo(expectedUserDTO);
     }
 }

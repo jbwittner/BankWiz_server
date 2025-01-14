@@ -1,5 +1,10 @@
 package fr.bankwiz.server.infrastructure.apirest.controller.impl;
 
+import fr.bankwiz.server.domain.model.data.BankAccountDomain;
+import fr.bankwiz.server.infrastructure.apirest.controller.data.dto.BankAccountCreationRequestDTO;
+import fr.bankwiz.server.infrastructure.apirest.controller.data.dto.BankAccountDTO;
+import fr.bankwiz.server.infrastructure.apirest.controller.data.mapper.RestBankAccountMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,11 +18,13 @@ import lombok.AllArgsConstructor;
 public class BankAccountControllerImpl implements BankAccountController {
 
     private final BankAccountDomainApi bankAccountDomainApi;
+    private final RestBankAccountMapper restBankAccountMapper;
 
     @Override
-    public ResponseEntity<Void> getPublicStatus() {
-        BankAccountCreationRequest bankAccountCreationRequest = new BankAccountCreationRequest("toto", "EURs", 1000);
-        bankAccountDomainApi.createBankAccount(bankAccountCreationRequest);
-        return null;
+    public ResponseEntity<BankAccountDTO> create(BankAccountCreationRequestDTO bankAccountCreationRequest) {
+        BankAccountCreationRequest requestDomain = this.restBankAccountMapper.toBankAccountCreationRequest(bankAccountCreationRequest);
+        final BankAccountDomain bankAccountDomain = bankAccountDomainApi.createBankAccount(requestDomain);
+        final BankAccountDTO bankAccountDTO = this.restBankAccountMapper.toBankAccountDTO(bankAccountDomain);
+        return new ResponseEntity<>(bankAccountDTO, HttpStatus.CREATED);
     }
 }
