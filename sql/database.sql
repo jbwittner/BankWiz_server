@@ -49,7 +49,7 @@ ALTER TABLE public.bank_accounts OWNER TO bankwiz_user;
 --
 
 CREATE TABLE public.currencies (
-    currency_decimals_digits integer NOT NULL,
+    currency_decimal_digits integer NOT NULL,
     currency_id uuid NOT NULL,
     currency_code character varying(255) NOT NULL,
     currency_name character varying(255) NOT NULL,
