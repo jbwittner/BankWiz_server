@@ -38,7 +38,7 @@ public class BankAccountDomainService implements BankAccountDomainApi {
                 .accountName(request.accountName())
                 .currency(currency)
                 .initialDecimalBalance(request.initialDecimalBalance())
-                .userId(user.id())
+                .user(user)
                 .build();
 
         return this.bankAccountDomainSpi.save(bankAccountDomain);

@@ -12,4 +12,4 @@ public record BankAccountDomain(
         @NotBlank String accountName,
         @NotNull CurrencyDomain currency,
         @NotNull Integer initialDecimalBalance,
-        @NotNull UUID userId) {}
+        @NotNull UserDomain user) {}
