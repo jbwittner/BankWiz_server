@@ -26,6 +26,7 @@ public final class Endpoints {
 
         public static final String BASE = "user";
         public static final String AUTHENTICATE = "authenticate";
+        public static final String FIND_ALL = "find-all";
     }
 
     public static final class BankAccount {

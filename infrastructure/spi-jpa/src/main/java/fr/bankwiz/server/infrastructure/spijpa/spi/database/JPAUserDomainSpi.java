@@ -1,5 +1,6 @@
 package fr.bankwiz.server.infrastructure.spijpa.spi.database;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -48,5 +49,11 @@ public class JPAUserDomainSpi implements UserDomainSpi {
         } else {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public List<UserDomain> findAll() {
+        final List<UserEntity> userEntities = userEntityRepository.findAll();
+        return jpaUserMapper.toUserDomain(userEntities);
     }
 }

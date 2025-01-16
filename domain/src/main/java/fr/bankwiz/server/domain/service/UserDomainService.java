@@ -1,5 +1,7 @@
 package fr.bankwiz.server.domain.service;
 
+import java.util.List;
+
 import fr.bankwiz.server.domain.annotation.DomainService;
 import fr.bankwiz.server.domain.api.UserDomainApi;
 import fr.bankwiz.server.domain.model.data.UserAuthenticationDomain;
@@ -38,5 +40,10 @@ public class UserDomainService implements UserDomainApi {
                 .build();
 
         return userDomainSpi.save(userDomain);
+    }
+
+    @Override
+    public List<UserDomain> findAll() {
+        return this.userDomainSpi.findAll();
     }
 }

@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 
 public record CurrencyDomain(
         @NotNull UUID id,
-        @NotNull int numericCode,
         @NotBlank String isoCode,
         @NotBlank String name,
         @NotBlank String symbol,

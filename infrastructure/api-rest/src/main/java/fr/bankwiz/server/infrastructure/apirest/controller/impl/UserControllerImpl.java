@@ -1,5 +1,7 @@
 package fr.bankwiz.server.infrastructure.apirest.controller.impl;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,5 +24,12 @@ public class UserControllerImpl implements UserController {
         final var result = this.userDomainApi.authenticationUser();
         final var userDTO = this.restUserMapper.toUserDTO(result);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<UserDTO>> findAllUsers() {
+        final var result = this.userDomainApi.findAll();
+        final var userDTOs = this.restUserMapper.toUserDTO(result);
+        return new ResponseEntity<>(userDTOs, HttpStatus.OK);
     }
 }
