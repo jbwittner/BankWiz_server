@@ -25,11 +25,11 @@ public class CurrencyEntity {
     private String name;
 
     @Column(name = "CURRENCY_CODE", nullable = false)
-    private String code;
+    private String isoCode;
 
     @Column(name = "CURRENCY_SYMBOL", nullable = false)
     private String symbol;
 
-    @Column(name = "CURRENCY_DECIMALS_DIGITS", nullable = false)
-    private int decimalsDigits;
+    @Column(name = "CURRENCY_DECIMAL_DIGITS", nullable = false)
+    private int decimalDigits;
 }

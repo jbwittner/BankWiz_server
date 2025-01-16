@@ -1,9 +1,12 @@
 package fr.bankwiz.server.domain.model.data;
 
+import java.util.UUID;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record CurrencyDomain(
+        @NotNull UUID id,
         @NotNull int numericCode,
         @NotBlank String isoCode,
         @NotBlank String name,

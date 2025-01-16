@@ -21,7 +21,7 @@ SET row_security = off;
 -- Data for Name: currencies; Type: TABLE DATA; Schema: public; Owner: bankwiz_user
 --
 
-COPY public.currencies (currency_decimals_digits, currency_id, currency_code, currency_name, currency_symbol) FROM stdin;
+COPY public.currencies (currency_decimal_digits, currency_id, currency_code, currency_name, currency_symbol) FROM stdin;
 2	01947108-b216-7c9a-a39a-d3a27eb5ccbf	EUR	Euro	€
 2	01947108-f205-7aec-9203-14884e73f69f	USD	US Dollars	$
 0	01947109-ef2a-7b90-972f-5ad4adfe2c91	JPY	Japanese Yen	¥

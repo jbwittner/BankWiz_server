@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import fr.bankwiz.server.infrastructure.apirest.controller.data.dto.CurrencyDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Bank Account", description = "Bank Account API")
+@Tag(name = "Currency", description = "Currency API")
 @RequestMapping(Endpoints.Currency.BASE)
 public interface CurrencyController {
 

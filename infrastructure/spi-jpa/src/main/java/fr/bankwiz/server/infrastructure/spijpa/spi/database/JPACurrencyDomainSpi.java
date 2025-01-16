@@ -27,6 +27,6 @@ public class JPACurrencyDomainSpi implements CurrencyDomainSpi {
 
     @Override
     public Optional<CurrencyDomain> findByIsoCode(String isoCode) {
-        return this.currencyEntityRepository.findByCode(isoCode).map(jpaCurrencyMapper::toCurrencyDomain);
+        return this.currencyEntityRepository.findByIsoCode(isoCode).map(jpaCurrencyMapper::toCurrencyDomain);
     }
 }
