@@ -8,5 +8,6 @@ import fr.bankwiz.server.infrastructure.spijpa.spi.database.entity.UserEntity;
 @Mapper(componentModel = "spring")
 public interface JPAUserMapper {
     UserEntity toUserEntity(UserDomain userDomain);
+
     UserDomain toUserDomain(UserEntity userEntity);
 }

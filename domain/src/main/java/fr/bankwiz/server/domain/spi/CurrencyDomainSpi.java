@@ -7,5 +7,6 @@ import fr.bankwiz.server.domain.model.data.CurrencyDomain;
 
 public interface CurrencyDomainSpi {
     List<CurrencyDomain> findAll();
+
     Optional<CurrencyDomain> findByIsoCode(String isoCode);
 }

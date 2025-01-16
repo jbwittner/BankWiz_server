@@ -1,9 +1,9 @@
 package fr.bankwiz.server.infrastructure.spijpa.spi.database.entity;
 
+import java.util.UUID;
+
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -25,11 +25,10 @@ public class BankAccountEntity {
     private Integer initialDecimalBalance;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="CURRENCY_ID", nullable=false)
+    @JoinColumn(name = "CURRENCY_ID", nullable = false)
     private CurrencyEntity currency;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="USER_ID", nullable=false)
+    @JoinColumn(name = "USER_ID", nullable = false)
     private UserEntity user;
-
 }

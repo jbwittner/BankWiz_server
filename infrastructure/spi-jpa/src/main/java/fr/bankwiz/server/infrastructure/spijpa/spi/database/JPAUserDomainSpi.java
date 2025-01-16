@@ -3,12 +3,12 @@ package fr.bankwiz.server.infrastructure.spijpa.spi.database;
 import java.util.Optional;
 import java.util.UUID;
 
-import fr.bankwiz.server.infrastructure.spijpa.spi.database.mapper.JPAUserMapper;
 import org.springframework.stereotype.Component;
 
 import fr.bankwiz.server.domain.model.data.UserDomain;
 import fr.bankwiz.server.domain.spi.UserDomainSpi;
 import fr.bankwiz.server.infrastructure.spijpa.spi.database.entity.UserEntity;
+import fr.bankwiz.server.infrastructure.spijpa.spi.database.mapper.JPAUserMapper;
 import fr.bankwiz.server.infrastructure.spijpa.spi.database.repository.UserEntityRepository;
 import lombok.RequiredArgsConstructor;
 
