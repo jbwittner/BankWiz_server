@@ -6,9 +6,7 @@ import fr.bankwiz.server.domain.model.data.UserDomain;
 import fr.bankwiz.server.infrastructure.spijpa.spi.database.entity.UserEntity;
 
 @Mapper(componentModel = "spring")
-public interface JPAUserDomainMapper {
-
-    UserEntity toEntity(UserDomain userDomain);
-
-    UserDomain toDomain(UserEntity userEntity);
+public interface JPAUserMapper {
+    UserEntity toUserEntity(UserDomain userDomain);
+    UserDomain toUserDomain(UserEntity userEntity);
 }
