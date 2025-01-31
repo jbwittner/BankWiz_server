@@ -21,7 +21,7 @@ public class BankAccountDomainService implements BankAccountDomainApi {
     private final BankAccountDomainSpi bankAccountDomainSpi;
     private final CurrencyDomainSpi currencyDomainSpi;
 
-    public BankAccountDomain createBankAccount(BankAccountCreationRequest request) {
+    public BankAccountDomain createBankAccount(final BankAccountCreationRequest request) {
         ValidatorUtil.validate(request);
 
         final var optionalCurrency = currencyDomainSpi.findByIsoCode(request.isoCurrencyCode());

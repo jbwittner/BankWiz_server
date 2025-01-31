@@ -18,7 +18,7 @@ public class ValidatorUtil {
     }
 
     private ValidatorUtil() {
-        // Empêche l'instanciation
+        // Avoid instantiation
     }
 
     public static <T> void validate(T object) {
