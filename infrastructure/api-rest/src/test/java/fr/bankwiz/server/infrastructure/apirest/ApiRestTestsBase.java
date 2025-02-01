@@ -1,5 +1,6 @@
 package fr.bankwiz.server.infrastructure.apirest;
 
+import fr.bankwiz.server.domain.api.CurrencyDomainApi;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class ApiRestTestsBase {
 
     @MockitoBean
     protected BankAccountDomainApi bankAccountDomainApi;
+
+    @MockitoBean
+    protected CurrencyDomainApi currencyDomainApi;
 
     @BeforeEach
     void beforeEach() {
