@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.bankwiz.server.infrastructure.apirest.ApiRestTestsBase;
 import fr.bankwiz.server.infrastructure.apirest.controller.Endpoints;
-import fr.bankwiz.server.infrastructure.apirest.controller.data.mapper.RestUserMapper;
+import fr.bankwiz.server.infrastructure.apirest.controller.data.mapper.RestCurrencyMapper;
 
 @DisplayName("Currency Controller Test Base")
 class CurrencyControllerTestBase extends ApiRestTestsBase {
@@ -13,5 +13,5 @@ class CurrencyControllerTestBase extends ApiRestTestsBase {
     protected final String baseUrl = "/" + Endpoints.Currency.BASE + "/";
 
     @Autowired
-    protected RestUserMapper restUserMapper;
+    protected RestCurrencyMapper currencyMapper;
 }
