@@ -44,5 +44,6 @@ public final class Endpoints {
         }
 
         public static final String BASE = "currency";
+        public static final String GET_ALL = "get-all";
     }
 }

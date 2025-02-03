@@ -13,6 +13,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping(Endpoints.Currency.BASE)
 public interface CurrencyController {
 
-    @GetMapping()
+    @GetMapping(Endpoints.Currency.GET_ALL)
     ResponseEntity<List<CurrencyDTO>> getAll();
 }

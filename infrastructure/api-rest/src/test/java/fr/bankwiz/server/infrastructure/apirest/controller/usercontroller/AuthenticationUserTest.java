@@ -11,7 +11,6 @@ import fr.bankwiz.server.domain.model.data.UserDomain;
 import fr.bankwiz.server.infrastructure.apirest.controller.Endpoints;
 import fr.bankwiz.server.infrastructure.apirest.controller.data.dto.UserDTO;
 
-@DisplayName("Authentication User Test")
 class AuthenticationUserTest extends UserControllerTestBase {
 
     final String url = this.baseUrl + Endpoints.User.AUTHENTICATE;
