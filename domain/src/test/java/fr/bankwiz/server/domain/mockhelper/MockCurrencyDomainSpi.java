@@ -17,7 +17,7 @@ public class MockCurrencyDomainSpi extends MockHelper<CurrencyDomainSpi> {
         Mockito.when(this.mock.findByIsoCode(isoCode)).thenReturn(optional);
     }
 
-    public void mockFindAll(final List<CurrencyDomain> currencies){
+    public void mockFindAll(final List<CurrencyDomain> currencies) {
         Mockito.when(this.mock.findAll()).thenReturn(currencies);
     }
 }

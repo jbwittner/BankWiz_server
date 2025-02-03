@@ -1,10 +1,11 @@
 package fr.bankwiz.server.domain.service.userservice;
 
-import fr.bankwiz.server.domain.model.data.UserDomain;
 import org.assertj.core.api.Assertions;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import fr.bankwiz.server.domain.model.data.UserDomain;
 
 class FindAllTest extends UserDomainServiceTestBase {
 
@@ -16,10 +17,9 @@ class FindAllTest extends UserDomainServiceTestBase {
         this.mockUserDomainSpi.mockFindAll(expectedUsers);
 
         // When
-        var users = userDomainService.findAll();
+        final var users = userDomainService.findAll();
         // Then
 
         Assertions.assertThat(users).containsExactlyInAnyOrderElementsOf(expectedUsers);
     }
-
 }

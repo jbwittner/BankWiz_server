@@ -1,6 +1,5 @@
 package fr.bankwiz.server.infrastructure.apirest;
 
-import fr.bankwiz.server.domain.api.CurrencyDomainApi;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import fr.bankwiz.server.domain.api.BankAccountDomainApi;
+import fr.bankwiz.server.domain.api.CurrencyDomainApi;
 import fr.bankwiz.server.domain.api.UserDomainApi;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

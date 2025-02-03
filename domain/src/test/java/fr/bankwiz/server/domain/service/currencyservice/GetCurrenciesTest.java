@@ -1,14 +1,15 @@
 package fr.bankwiz.server.domain.service.currencyservice;
 
-import fr.bankwiz.server.domain.model.data.CurrencyDomain;
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import fr.bankwiz.server.domain.model.data.CurrencyDomain;
 
-class GetCurrenciesTest extends CurrencyDomainServiceTestBase{
+class GetCurrenciesTest extends CurrencyDomainServiceTestBase {
 
     @Test
     @DisplayName("Should return all currencies")
@@ -23,5 +24,4 @@ class GetCurrenciesTest extends CurrencyDomainServiceTestBase{
         // Then
         Assertions.assertThat(currencies).containsExactlyInAnyOrderElementsOf(expectedCurrencies);
     }
-
 }

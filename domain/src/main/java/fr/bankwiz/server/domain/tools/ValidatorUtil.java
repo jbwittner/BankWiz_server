@@ -13,7 +13,7 @@ public class ValidatorUtil {
     private static final Validator validator;
 
     static {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
 
@@ -21,8 +21,8 @@ public class ValidatorUtil {
         // Avoid instantiation
     }
 
-    public static <T> void validate(T object) {
-        Set<ConstraintViolation<T>> violations = validator.validate(object);
+    public static <T> void validate(final T object) {
+        final Set<ConstraintViolation<T>> violations = validator.validate(object);
         if (!violations.isEmpty()) {
             throw new ValidationException(violations);
         }

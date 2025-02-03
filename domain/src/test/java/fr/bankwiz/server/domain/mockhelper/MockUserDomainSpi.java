@@ -22,5 +22,4 @@ public class MockUserDomainSpi extends MockBaseDomainSpiHelper<UserDomainSpi, Us
     public void mockFindAll(final List<UserDomain> userDomains) {
         Mockito.when(this.mock.findAll()).thenReturn(userDomains);
     }
-
 }
