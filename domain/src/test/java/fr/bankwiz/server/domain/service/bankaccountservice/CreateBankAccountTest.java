@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import fr.bankwiz.server.domain.FactoryHelper;
@@ -18,6 +19,7 @@ import static org.instancio.Select.field;
 public class CreateBankAccountTest extends BankAccountDomainServiceTestBase {
 
     @Test
+    @DisplayName("Create a bank account")
     public void ok() {
         // Given
         final CurrencyDomain currency = FactoryHelper.createCurrencyDomain();
@@ -45,6 +47,7 @@ public class CreateBankAccountTest extends BankAccountDomainServiceTestBase {
     }
 
     @Test
+    @DisplayName("Currency not found")
     public void currencyNotFound() {
         // Given
         final BankAccountCreationRequest request = Instancio.create(BankAccountCreationRequest.class);
