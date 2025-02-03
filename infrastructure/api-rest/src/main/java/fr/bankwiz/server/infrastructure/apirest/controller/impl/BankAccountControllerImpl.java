@@ -21,8 +21,8 @@ public class BankAccountControllerImpl implements BankAccountController {
     private final RestBankAccountMapper restBankAccountMapper;
 
     @Override
-    public ResponseEntity<BankAccountDTO> create(BankAccountCreationRequestDTO bankAccountCreationRequest) {
-        BankAccountCreationRequest requestDomain =
+    public ResponseEntity<BankAccountDTO> create(final BankAccountCreationRequestDTO bankAccountCreationRequest) {
+        final BankAccountCreationRequest requestDomain =
                 this.restBankAccountMapper.toBankAccountCreationRequest(bankAccountCreationRequest);
         final BankAccountDomain bankAccountDomain = bankAccountDomainApi.createBankAccount(requestDomain);
         final BankAccountDTO bankAccountDTO = this.restBankAccountMapper.toBankAccountDTO(bankAccountDomain);
