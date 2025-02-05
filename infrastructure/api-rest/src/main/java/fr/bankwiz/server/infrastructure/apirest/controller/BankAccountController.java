@@ -1,5 +1,6 @@
 package fr.bankwiz.server.infrastructure.apirest.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping(Endpoints.BankAccount.BASE)
 public interface BankAccountController {
 
-    @PostMapping()
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<BankAccountDTO> create(@RequestBody BankAccountCreationRequestDTO bankAccountCreationRequest);
 }

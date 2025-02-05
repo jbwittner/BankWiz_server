@@ -17,7 +17,7 @@ import fr.bankwiz.server.infrastructure.apirest.controller.data.dto.CurrencyDTO;
 
 class GetAllTest extends CurrencyControllerTestBase {
 
-    final String url = this.baseUrl + Endpoints.Currency.GET_ALL;
+    final String url = super.baseUrl + Endpoints.Currency.GET_ALL;
 
     @Test
     @DisplayName("User not authenticated")

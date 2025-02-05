@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
@@ -127,8 +128,65 @@ public class ApiTestHelper {
         }
     }
 
+    private <T> ResultCall<T> postRequest(
+            final String url,
+            final Object body,
+            final Class<T> classResult,
+            final Boolean authenticated,
+            final String... scopes) {
+
+        try {
+
+            final MockHttpServletRequestBuilder builder;
+
+            if (authenticated) {
+
+                final var authorities =
+                        Arrays.stream(scopes).map(SimpleGrantedAuthority::new).toArray(SimpleGrantedAuthority[]::new);
+                final SecurityMockMvcRequestPostProcessors.JwtRequestPostProcessor jwtRequestPostProcessor =
+                        jwt().authorities(authorities);
+                builder = MockMvcRequestBuilders.post(url).with(jwtRequestPostProcessor);
+            } else {
+                builder = MockMvcRequestBuilders.post(url);
+            }
+
+            final String bodyAsString = objectMapper.writeValueAsString(body);
+
+            builder.contentType(MediaType.APPLICATION_JSON_VALUE).content(bodyAsString);
+
+            final var mvcResult = this.mvc.perform(builder).andReturn();
+
+            final int statusCode = mvcResult.getResponse().getStatus();
+
+            final HttpStatus httpStatus = HttpStatus.valueOf(statusCode);
+
+            final String resultAsString = mvcResult.getResponse().getContentAsString();
+
+            final Object result;
+
+            if (String.class.equals(classResult)) {
+                result = resultAsString;
+            } else if (Void.class.equals(classResult)) {
+                result = null;
+            } else {
+                result = objectMapper.readValue(resultAsString, classResult);
+            }
+
+            return new ResultCall<>((T) result, httpStatus);
+
+        } catch (final Exception e) {
+            Assertions.fail(String.valueOf(e));
+            return null;
+        }
+    }
+
     public <T> ResultCall<T> getRequest(final String url, final Class<T> classResult, final String... scopes) {
         return this.getRequest(url, classResult, true, scopes);
+    }
+
+    public <T> ResultCall<T> postRequest(
+            final String url, final Object body, final Class<T> classResult, final String... scopes) {
+        return this.postRequest(url, body, classResult, true, scopes);
     }
 
     public <T> ResultCall<T> getRequest(final String url, final TypeReference<T> type, final String... scopes) {
@@ -141,5 +199,9 @@ public class ApiTestHelper {
 
     public ResultCall<Void> getRequestWithoutAuthentication(final String url) {
         return this.getRequest(url, Void.class, false);
+    }
+
+    public ResultCall<Void> postRequestWithoutAuthentication(final String url, final Object body) {
+        return this.postRequest(url, body, Void.class, false);
     }
 }

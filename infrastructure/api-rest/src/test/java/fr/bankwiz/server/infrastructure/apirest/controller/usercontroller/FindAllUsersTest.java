@@ -19,7 +19,7 @@ import fr.bankwiz.server.infrastructure.apirest.controller.data.mapper.RestUserM
 
 class FindAllUsersTest extends UserControllerTestBase {
 
-    final String url = this.baseUrl + Endpoints.User.FIND_ALL;
+    final String url = super.baseUrl + Endpoints.User.FIND_ALL;
 
     @Autowired
     private RestUserMapper restUserMapper;

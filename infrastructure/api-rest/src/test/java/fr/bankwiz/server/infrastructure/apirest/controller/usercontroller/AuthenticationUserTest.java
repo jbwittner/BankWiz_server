@@ -13,7 +13,7 @@ import fr.bankwiz.server.infrastructure.apirest.controller.data.dto.UserDTO;
 
 class AuthenticationUserTest extends UserControllerTestBase {
 
-    final String url = this.baseUrl + Endpoints.User.AUTHENTICATE;
+    final String url = super.baseUrl + Endpoints.User.AUTHENTICATE;
 
     @Test
     @DisplayName("User not authenticated")
