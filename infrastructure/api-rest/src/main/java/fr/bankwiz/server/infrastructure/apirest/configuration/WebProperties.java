@@ -15,4 +15,5 @@ import lombok.Setter;
 public class WebProperties {
     private List<String> corsAllowedOrigins;
     private boolean enableCors;
+    private boolean enableCsrf;
 }

@@ -39,8 +39,11 @@ public class SecurityConfiguration {
             http.cors(cors -> cors.disable());
         }
 
-        http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(authorize -> authorize
+        if (!webProperties.isEnableCsrf()) {
+            http.csrf(csrf -> csrf.disable());
+        }
+
+        http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(
                                 "/status/public",
                                 "/v3/api-docs/**",
