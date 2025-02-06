@@ -145,22 +145,16 @@ class ValidateTest {
     @Setter
     private class ValidateTestData {
 
-        @NotBlank
-        private String notBlankStringInput = "notBlankStringInput";
+        @NotBlank private String notBlankStringInput = "notBlankStringInput";
 
         @NotNull private String notNullStringInput = "notNullStringInput";
 
-        @Max(10)
-        private Integer maxIntegerInput = 5;
+        @Max(10) private Integer maxIntegerInput = 5;
 
-        @Min(1)
-        private Integer minIntegerInput = 5;
+        @Min(1) private Integer minIntegerInput = 5;
 
-        @Min(1)
-        @Max(10)
-        private Integer minMaxIntegerInput = 5;
+        @Min(1) @Max(10) private Integer minMaxIntegerInput = 5;
 
-        @Size(min = 2, max = 10)
-        private String sizeStringInput = "input";
+        @Size(min = 2, max = 10) private String sizeStringInput = "input";
     }
 }
