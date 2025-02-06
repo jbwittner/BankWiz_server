@@ -9,7 +9,6 @@ application:
   web:
     port: 9595
     enable-cors: false
-    enable-csrf: false
     cors-allowed-origins: ""
   db:
     host: dblocalhost

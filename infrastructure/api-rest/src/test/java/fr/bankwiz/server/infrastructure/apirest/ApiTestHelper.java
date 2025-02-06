@@ -152,7 +152,9 @@ public class ApiTestHelper {
 
             final String bodyAsString = objectMapper.writeValueAsString(body);
 
-            builder.contentType(MediaType.APPLICATION_JSON_VALUE).content(bodyAsString);
+            builder.contentType(MediaType.APPLICATION_JSON_VALUE)
+                    .content(bodyAsString)
+                    .with(SecurityMockMvcRequestPostProcessors.csrf());
 
             final var mvcResult = this.mvc.perform(builder).andReturn();
 
