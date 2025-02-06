@@ -24,11 +24,11 @@ public class BankAccountEntity {
     @Column(name = "INITIAL_DECIMAL_BALANCE", nullable = false)
     private Integer initialDecimalBalance;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "CURRENCY_ID", nullable = false)
     private CurrencyEntity currency;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
     private UserEntity user;
 }
