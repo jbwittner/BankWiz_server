@@ -6,9 +6,6 @@ application:
   oauth2:
     issuer-uri: https://example.com/
     audience: audience
-logging:
-  level:
-    root: debug
 spring:
   security:
     oauth2:

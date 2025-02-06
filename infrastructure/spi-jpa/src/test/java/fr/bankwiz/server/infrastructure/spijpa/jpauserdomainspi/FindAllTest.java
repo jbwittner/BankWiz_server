@@ -17,7 +17,7 @@ class FindAllTest extends JPAUserDomainSpiTestBase {
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     void find_all_users() {
         // When
-        List<UserDomain> users = jpaUserDomainSpi.findAll();
+        final List<UserDomain> users = jpaUserDomainSpi.findAll();
         // Then
         final UserDomain user1 = new UserDomain(
                 UUID.fromString("0194dbda-e37a-71ea-9d78-d38514379951"),
