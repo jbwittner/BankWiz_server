@@ -16,11 +16,11 @@ import fr.bankwiz.server.domain.model.request.BankAccountCreationRequest;
 
 import static org.instancio.Select.field;
 
-public class CreateBankAccountTest extends BankAccountDomainServiceTestBase {
+class CreateBankAccountTest extends BankAccountDomainServiceTestBase {
 
     @Test
     @DisplayName("Create a bank account")
-    public void ok() {
+    void ok() {
         // Given
         final CurrencyDomain currency = FactoryHelper.createCurrencyDomain();
         final BankAccountCreationRequest request = Instancio.of(BankAccountCreationRequest.class)
@@ -48,7 +48,7 @@ public class CreateBankAccountTest extends BankAccountDomainServiceTestBase {
 
     @Test
     @DisplayName("Currency not found")
-    public void currencyNotFound() {
+    void currencyNotFound() {
         // Given
         final BankAccountCreationRequest request = Instancio.create(BankAccountCreationRequest.class);
 
