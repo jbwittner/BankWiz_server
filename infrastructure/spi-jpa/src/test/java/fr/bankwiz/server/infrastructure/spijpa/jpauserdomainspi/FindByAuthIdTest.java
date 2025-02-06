@@ -10,7 +10,6 @@ import fr.bankwiz.server.domain.model.data.UserDomain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("Find By Auth Id Test")
 class FindByAuthIdTest extends JPAUserDomainSpiTestBase {
 
     final String authId = "authtoto";

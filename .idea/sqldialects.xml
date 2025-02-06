@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/infrastructure/api-rest" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/infrastructure/spi-jpa/src/test/resources/sql/jpauserdomainspi/findall/users.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/sql/data.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/sql/database.sql" dialect="PostgreSQL" />
     <file url="PROJECT" dialect="MySQL" />

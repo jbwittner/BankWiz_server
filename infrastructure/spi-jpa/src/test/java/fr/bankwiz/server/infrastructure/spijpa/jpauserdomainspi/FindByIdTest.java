@@ -10,7 +10,6 @@ import fr.bankwiz.server.domain.model.data.UserDomain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("Find By Id Test")
 class FindByIdTest extends JPAUserDomainSpiTestBase {
 
     final UUID uuid = UUID.fromString("0192e236-f6d3-7528-9791-145f4cd38abe");
