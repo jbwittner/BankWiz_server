@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.UUID;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.jdbc.Sql;
 
@@ -13,7 +12,6 @@ import fr.bankwiz.server.domain.model.data.UserDomain;
 class FindAllTest extends JPAUserDomainSpiTestBase {
 
     @Test
-    @DisplayName("User exist")
     @Sql(
             scripts = {"/sql/jpauserdomainspi/findall/users.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)

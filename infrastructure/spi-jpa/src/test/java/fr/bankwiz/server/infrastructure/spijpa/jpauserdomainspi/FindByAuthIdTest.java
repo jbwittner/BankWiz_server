@@ -2,7 +2,6 @@ package fr.bankwiz.server.infrastructure.spijpa.jpauserdomainspi;
 
 import java.util.UUID;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.jdbc.Sql;
 
@@ -15,7 +14,6 @@ class FindByAuthIdTest extends JPAUserDomainSpiTestBase {
     final String authId = "authtoto";
 
     @Test
-    @DisplayName("User not exist")
     void user_not_exist() {
         // 👉 When
         final var optional = jpaUserDomainSpi.findByAuthId(authId);
@@ -25,7 +23,6 @@ class FindByAuthIdTest extends JPAUserDomainSpiTestBase {
     }
 
     @Test
-    @DisplayName("User exist")
     @Sql(
             scripts = {"/sql/jpauserdomainspi/findbyauthid/userexist.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
