@@ -1,11 +1,13 @@
 package fr.bankwiz.server.infrastructure.spijpa.spi.database;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
 import fr.bankwiz.server.domain.model.data.BankAccountDomain;
+import fr.bankwiz.server.domain.model.data.UserDomain;
 import fr.bankwiz.server.domain.spi.BankAccountDomainSpi;
 import fr.bankwiz.server.infrastructure.spijpa.spi.database.entity.BankAccountEntity;
 import fr.bankwiz.server.infrastructure.spijpa.spi.database.mapper.JPABankAccountMapper;
@@ -29,5 +31,10 @@ public class JPABankAccountDomainSpi implements BankAccountDomainSpi {
     @Override
     public Optional<BankAccountDomain> findById(final UUID id) {
         return this.bankAccountEntityRepository.findById(id).map(this.jpaBankAccountMapper::toBankAccountDomain);
+    }
+
+    @Override
+    public List<BankAccountDomain> findByUser(UserDomain userDomain) {
+        return List.of();
     }
 }

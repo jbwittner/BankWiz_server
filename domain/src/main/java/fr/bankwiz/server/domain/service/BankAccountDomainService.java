@@ -1,5 +1,8 @@
 package fr.bankwiz.server.domain.service;
 
+import java.util.List;
+import java.util.UUID;
+
 import fr.bankwiz.server.domain.annotation.DomainService;
 import fr.bankwiz.server.domain.api.BankAccountDomainApi;
 import fr.bankwiz.server.domain.exception.DataModelNotFound;
@@ -7,6 +10,7 @@ import fr.bankwiz.server.domain.model.data.BankAccountDomain;
 import fr.bankwiz.server.domain.model.data.CurrencyDomain;
 import fr.bankwiz.server.domain.model.data.UserDomain;
 import fr.bankwiz.server.domain.model.request.BankAccountCreationRequest;
+import fr.bankwiz.server.domain.model.request.BankAccountUpdateRequest;
 import fr.bankwiz.server.domain.spi.AuthenticationSpi;
 import fr.bankwiz.server.domain.spi.BankAccountDomainSpi;
 import fr.bankwiz.server.domain.spi.CurrencyDomainSpi;
@@ -24,14 +28,10 @@ public class BankAccountDomainService implements BankAccountDomainApi {
     public BankAccountDomain createBankAccount(final BankAccountCreationRequest request) {
         ValidatorUtil.validate(request);
 
-        final var optionalCurrency = currencyDomainSpi.findByIsoCode(request.isoCurrencyCode());
-
-        if (optionalCurrency.isEmpty()) {
-            throw new DataModelNotFound(CurrencyDomain.class, request.isoCurrencyCode());
-        }
-
+        final var currency = currencyDomainSpi
+                .findByIsoCode(request.isoCurrencyCode())
+                .orElseThrow(() -> new DataModelNotFound(CurrencyDomain.class, request.isoCurrencyCode()));
         final UserDomain user = authenticationSpi.getCurrentUser();
-        final var currency = optionalCurrency.get();
 
         final BankAccountDomain bankAccountDomain = BankAccountDomain.builder()
                 .id(UUIDGenerator.generateUUID())
@@ -42,5 +42,38 @@ public class BankAccountDomainService implements BankAccountDomainApi {
                 .build();
 
         return this.bankAccountDomainSpi.save(bankAccountDomain);
+    }
+
+    @Override
+    public BankAccountDomain getBankAccount(final UUID id) {
+        return this.bankAccountDomainSpi
+                .findById(id)
+                .orElseThrow(() -> new DataModelNotFound(BankAccountDomain.class, id));
+    }
+
+    @Override
+    public BankAccountDomain updateBankAccount(UUID id, BankAccountUpdateRequest request) {
+        final BankAccountDomain bankAccountDomain = this.bankAccountDomainSpi
+                .findById(id)
+                .orElseThrow(() -> new DataModelNotFound(BankAccountDomain.class, id));
+
+        CurrencyDomain newCurrency = null; // Default value
+
+        if (request.isoCurrencyCode() != null) {
+            newCurrency = this.currencyDomainSpi
+                    .findByIsoCode(request.isoCurrencyCode())
+                    .orElseThrow(() -> new DataModelNotFound(CurrencyDomain.class, request.isoCurrencyCode()));
+        }
+
+        final BankAccountDomain updatedAccount =
+                bankAccountDomain.updateAccount(request.accountName(), newCurrency, request.initialDecimalBalance());
+
+        return this.bankAccountDomainSpi.save(updatedAccount);
+    }
+
+    @Override
+    public List<BankAccountDomain> getBankAccounts() {
+        final var currentUser = this.authenticationSpi.getCurrentUser();
+        return this.bankAccountDomainSpi.findByUser(currentUser);
     }
 }
