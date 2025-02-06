@@ -1,0 +1,6 @@
+INSERT INTO CURRENCIES(CURRENCY_ID, CURRENCY_NAME, CURRENCY_CODE, CURRENCY_SYMBOL, CURRENCY_DECIMAL_DIGITS)
+VALUES
+    ('0194dbf8-8c9e-772c-9734-ec1c8a1916f0', 'US Dollar', 'USD', '$', 2),
+    ('0194dbf8-bde4-7d17-b126-d5349a099a38', 'Euro', 'EUR', '€', 2),
+    ('0194dbf9-1160-7d09-af6e-5801770b2699', 'HK Dollar', 'HKD', 'HK$', 2),
+    ('0194dc00-3e81-7a86-a7a8-74a9a4b0bdae', 'YEN', 'JPY', '¥', 0);

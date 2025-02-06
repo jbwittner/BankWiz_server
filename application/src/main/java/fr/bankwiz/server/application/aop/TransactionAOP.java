@@ -22,7 +22,7 @@ public class TransactionAOP {
     public TransactionAOP(final PlatformTransactionManager platformTransactionManager) {
         this.platformTransactionManager = platformTransactionManager;
         definition.setIsolationLevel(TransactionDefinition.ISOLATION_REPEATABLE_READ);
-        definition.setTimeout(10);
+        definition.setTimeout(60);
     }
 
     @Around("@within(fr.bankwiz.server.domain.annotation.DomainService)")

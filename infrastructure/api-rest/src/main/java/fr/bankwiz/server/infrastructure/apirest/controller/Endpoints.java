@@ -26,5 +26,24 @@ public final class Endpoints {
 
         public static final String BASE = "user";
         public static final String AUTHENTICATE = "authenticate";
+        public static final String FIND_ALL = "find-all";
+    }
+
+    public static final class BankAccount {
+
+        private BankAccount() {
+            // Private constructor to prevent instantiation
+        }
+
+        public static final String BASE = "bank-account";
+    }
+
+    public static final class Currency {
+        private Currency() {
+            // Private constructor to prevent instantiation
+        }
+
+        public static final String BASE = "currency";
+        public static final String GET_ALL = "get-all";
     }
 }

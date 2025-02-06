@@ -18,11 +18,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.bankwiz.server.domain.model.data.UserAuthenticationDomain;
-import fr.bankwiz.server.domain.spi.AuthenticationSpi;
 import fr.bankwiz.server.infrastructure.apirest.exception.Auth0ErrorException;
 
 @Component
-public class Oauth2AuthenticationSpi implements AuthenticationSpi {
+public class Oauth2AuthenticationSpi {
 
     private final String issuer;
     private final ObjectMapper objectMapper;
@@ -34,7 +33,6 @@ public class Oauth2AuthenticationSpi implements AuthenticationSpi {
         this.objectMapper = objectMapper;
     }
 
-    @Override
     public UserAuthenticationDomain getCurrentUserAuthentication() {
         final String accessToken = this.getAuthentication().getToken().getTokenValue();
         final String url = this.issuer + "userinfo";

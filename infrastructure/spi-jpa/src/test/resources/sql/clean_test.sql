@@ -1,10 +1,10 @@
--- Assuming you have a list of tables to clean up
-
--- Disable foreign key checks
+-- Désactiver les contraintes de clé étrangère temporairement
 SET session_replication_role = 'replica';
 
--- Clean up tables
-TRUNCATE TABLE USER_ACCOUNTS;
+-- Vider les tables en cascade
+TRUNCATE TABLE BANK_ACCOUNTS CASCADE;
+TRUNCATE TABLE CURRENCIES CASCADE;
+TRUNCATE TABLE USER_ACCOUNTS CASCADE;
 
--- Enable foreign key checks
+-- Réactiver les contraintes
 SET session_replication_role = 'origin';

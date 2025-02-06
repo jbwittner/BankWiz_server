@@ -1,5 +1,7 @@
 package fr.bankwiz.server.infrastructure.apirest.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,4 +21,11 @@ public interface UserController {
             security = @SecurityRequirement(name = "security_auth"))
     @GetMapping(Endpoints.User.AUTHENTICATE)
     ResponseEntity<UserDTO> authenticationUser();
+
+    @Operation(
+            summary = "Find all users",
+            description = "Find all users in the service",
+            security = @SecurityRequirement(name = "security_auth"))
+    @GetMapping(Endpoints.User.FIND_ALL)
+    ResponseEntity<List<UserDTO>> findAllUsers();
 }

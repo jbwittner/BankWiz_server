@@ -47,7 +47,7 @@ public class SecurityConfiguration {
                                 "/swagger-ui/**",
                                 "/actuator/**")
                         .permitAll()
-                        .requestMatchers("/status/admin")
+                        .requestMatchers("/status/admin", "/user/find-all")
                         .hasAuthority("SCOPE_admin:configuration")
                         .anyRequest()
                         .authenticated())

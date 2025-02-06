@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.bankwiz.server.infrastructure.apirest.ApiRestTestsBase;
 import fr.bankwiz.server.infrastructure.apirest.controller.Endpoints;
-import fr.bankwiz.server.infrastructure.apirest.controller.data.mapper.RestUserDomainMapper;
+import fr.bankwiz.server.infrastructure.apirest.controller.data.mapper.RestUserMapper;
 
 @DisplayName("User Controller Test Base")
 class UserControllerTestBase extends ApiRestTestsBase {
@@ -13,5 +13,5 @@ class UserControllerTestBase extends ApiRestTestsBase {
     protected final String baseUrl = "/" + Endpoints.User.BASE + "/";
 
     @Autowired
-    protected RestUserDomainMapper restUserDomainMapper;
+    protected RestUserMapper restUserMapper;
 }

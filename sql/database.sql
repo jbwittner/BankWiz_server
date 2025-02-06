@@ -17,11 +17,47 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+ALTER TABLE ONLY public.bank_accounts DROP CONSTRAINT fkp9nhweasjhghlwmk2631xrnbg;
+ALTER TABLE ONLY public.bank_accounts DROP CONSTRAINT fk43jdgloni1sdb2u78flrj6l6i;
 ALTER TABLE ONLY public.user_accounts DROP CONSTRAINT user_accounts_pkey;
+ALTER TABLE ONLY public.currencies DROP CONSTRAINT currencies_pkey;
+ALTER TABLE ONLY public.bank_accounts DROP CONSTRAINT bank_accounts_pkey;
 DROP TABLE public.user_accounts;
+DROP TABLE public.currencies;
+DROP TABLE public.bank_accounts;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- Name: bank_accounts; Type: TABLE; Schema: public; Owner: bankwiz_user
+--
+
+CREATE TABLE public.bank_accounts (
+    initial_decimal_balance integer NOT NULL,
+    bank_account_id uuid NOT NULL,
+    currency_id uuid NOT NULL,
+    user_id uuid NOT NULL,
+    bank_account_name character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.bank_accounts OWNER TO bankwiz_user;
+
+--
+-- Name: currencies; Type: TABLE; Schema: public; Owner: bankwiz_user
+--
+
+CREATE TABLE public.currencies (
+    currency_decimal_digits integer NOT NULL,
+    currency_id uuid NOT NULL,
+    currency_code character varying(255) NOT NULL,
+    currency_name character varying(255) NOT NULL,
+    currency_symbol character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.currencies OWNER TO bankwiz_user;
 
 --
 -- Name: user_accounts; Type: TABLE; Schema: public; Owner: bankwiz_user
@@ -39,11 +75,43 @@ CREATE TABLE public.user_accounts (
 ALTER TABLE public.user_accounts OWNER TO bankwiz_user;
 
 --
+-- Name: bank_accounts bank_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: bankwiz_user
+--
+
+ALTER TABLE ONLY public.bank_accounts
+    ADD CONSTRAINT bank_accounts_pkey PRIMARY KEY (bank_account_id);
+
+
+--
+-- Name: currencies currencies_pkey; Type: CONSTRAINT; Schema: public; Owner: bankwiz_user
+--
+
+ALTER TABLE ONLY public.currencies
+    ADD CONSTRAINT currencies_pkey PRIMARY KEY (currency_id);
+
+
+--
 -- Name: user_accounts user_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: bankwiz_user
 --
 
 ALTER TABLE ONLY public.user_accounts
     ADD CONSTRAINT user_accounts_pkey PRIMARY KEY (user_id);
+
+
+--
+-- Name: bank_accounts fk43jdgloni1sdb2u78flrj6l6i; Type: FK CONSTRAINT; Schema: public; Owner: bankwiz_user
+--
+
+ALTER TABLE ONLY public.bank_accounts
+    ADD CONSTRAINT fk43jdgloni1sdb2u78flrj6l6i FOREIGN KEY (currency_id) REFERENCES public.currencies(currency_id);
+
+
+--
+-- Name: bank_accounts fkp9nhweasjhghlwmk2631xrnbg; Type: FK CONSTRAINT; Schema: public; Owner: bankwiz_user
+--
+
+ALTER TABLE ONLY public.bank_accounts
+    ADD CONSTRAINT fkp9nhweasjhghlwmk2631xrnbg FOREIGN KEY (user_id) REFERENCES public.user_accounts(user_id);
 
 
 --

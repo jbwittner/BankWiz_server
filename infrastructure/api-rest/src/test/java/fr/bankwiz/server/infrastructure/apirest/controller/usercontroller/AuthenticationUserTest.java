@@ -11,10 +11,9 @@ import fr.bankwiz.server.domain.model.data.UserDomain;
 import fr.bankwiz.server.infrastructure.apirest.controller.Endpoints;
 import fr.bankwiz.server.infrastructure.apirest.controller.data.dto.UserDTO;
 
-@DisplayName("Authentication User Test")
 class AuthenticationUserTest extends UserControllerTestBase {
 
-    final String url = this.baseUrl + Endpoints.User.AUTHENTICATE;
+    final String url = super.baseUrl + Endpoints.User.AUTHENTICATE;
 
     @Test
     @DisplayName("User not authenticated")
@@ -38,7 +37,7 @@ class AuthenticationUserTest extends UserControllerTestBase {
         // ✅ Then
         Assertions.assertThat(resultCall.httpStatus()).isEqualTo(HttpStatus.OK);
 
-        final UserDTO expectedUserDTO = this.restUserDomainMapper.toDTO(userDomain);
+        final UserDTO expectedUserDTO = this.restUserMapper.toUserDTO(userDomain);
         Assertions.assertThat(resultCall.result()).isEqualTo(expectedUserDTO);
     }
 }

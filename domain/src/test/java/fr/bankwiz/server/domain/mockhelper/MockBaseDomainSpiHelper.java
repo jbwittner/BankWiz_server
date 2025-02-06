@@ -26,6 +26,10 @@ public class MockBaseDomainSpiHelper<T extends BaseDomainSpi<E, I>, E, I> extend
         Mockito.verify(this.mock, Mockito.times(1)).save(domainData);
     }
 
+    public void verifySaveNotCalled() {
+        Mockito.verify(this.mock, Mockito.never()).save(Mockito.any());
+    }
+
     public void mockFindById(final I id, final E entity) {
         Mockito.when(this.mock.findById(id)).thenReturn(Optional.of(entity));
     }

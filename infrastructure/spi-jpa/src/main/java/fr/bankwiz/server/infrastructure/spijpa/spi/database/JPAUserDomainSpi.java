@@ -1,5 +1,6 @@
 package fr.bankwiz.server.infrastructure.spijpa.spi.database;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component;
 import fr.bankwiz.server.domain.model.data.UserDomain;
 import fr.bankwiz.server.domain.spi.UserDomainSpi;
 import fr.bankwiz.server.infrastructure.spijpa.spi.database.entity.UserEntity;
-import fr.bankwiz.server.infrastructure.spijpa.spi.database.mapper.JPAUserDomainMapper;
+import fr.bankwiz.server.infrastructure.spijpa.spi.database.mapper.JPAUserMapper;
 import fr.bankwiz.server.infrastructure.spijpa.spi.database.repository.UserEntityRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -17,14 +18,14 @@ import lombok.RequiredArgsConstructor;
 public class JPAUserDomainSpi implements UserDomainSpi {
 
     private final UserEntityRepository userEntityRepository;
-    private final JPAUserDomainMapper jpaUserDomainMapper;
+    private final JPAUserMapper jpaUserMapper;
 
     @Override
     public Optional<UserDomain> findByAuthId(final String authId) {
         final var optional = userEntityRepository.findByAuthId(authId);
 
         if (optional.isPresent()) {
-            final UserDomain userDomain = jpaUserDomainMapper.toDomain(optional.get());
+            final UserDomain userDomain = jpaUserMapper.toUserDomain(optional.get());
             return Optional.of(userDomain);
         } else {
             return Optional.empty();
@@ -33,9 +34,9 @@ public class JPAUserDomainSpi implements UserDomainSpi {
 
     @Override
     public UserDomain save(final UserDomain userDomain) {
-        final UserEntity userEntity = jpaUserDomainMapper.toEntity(userDomain);
+        final UserEntity userEntity = jpaUserMapper.toUserEntity(userDomain);
         final UserEntity savedUserEntity = userEntityRepository.save(userEntity);
-        return jpaUserDomainMapper.toDomain(savedUserEntity);
+        return jpaUserMapper.toUserDomain(savedUserEntity);
     }
 
     @Override
@@ -43,10 +44,16 @@ public class JPAUserDomainSpi implements UserDomainSpi {
         final var optional = userEntityRepository.findById(id);
 
         if (optional.isPresent()) {
-            final UserDomain userDomain = jpaUserDomainMapper.toDomain(optional.get());
+            final UserDomain userDomain = jpaUserMapper.toUserDomain(optional.get());
             return Optional.of(userDomain);
         } else {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public List<UserDomain> findAll() {
+        final List<UserEntity> userEntities = userEntityRepository.findAll();
+        return jpaUserMapper.toUserDomain(userEntities);
     }
 }
